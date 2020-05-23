@@ -11,6 +11,9 @@ description: Horse Training App
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+#
+# See also
+# - https://dart.dev/tools/pub/dependencies
 version: 1.0.0+1
 
 environment:
@@ -24,8 +27,16 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+  # For HTTP communication with a backend service
+  http: ^0.1.2.0+2
+
 dev_dependencies:
+  # https://flutter.dev/docs/cookbook/testing/integration/introduction
   flutter_test:
+    sdk: flutter
+
+  # See https://flutter.dev/docs/cookbook/testing/integration/introduction    
+  flutter_driver:
     sdk: flutter
 
 
