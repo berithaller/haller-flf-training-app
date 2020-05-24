@@ -3,31 +3,43 @@
  */
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget
-{
+class HomeScreen extends StatefulWidget {
   @protected
   @override
-  State<HomeScreen> createState() => HomeView();
+  State<HomeScreen> createState() => _HomeState();
 }
 
-class HomeView extends State<HomeScreen>
-{
+class _HomeState extends State<HomeScreen> {
   @protected
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
 
     // TODO patrick: initialize controller for HomeScreen here.
   }
 
+  /// Create the widget for "Welcome"
+
+  Widget _createWelcome() {
+    final Widget welcome = Container(
+      decoration: BoxDecoration(
+          backgroundBlendMode: BlendMode.colorBurn,
+          border: Border.all(color: Colors.blue, width: 2)),
+    );
+    return welcome;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("TODO - App Title (Home Screen)")
+    var welcome = _createWelcome();
+
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text("TODO - App Title (Home Screen)"),
+          welcome,
+        ],
       ),
     );
   }
-
 }

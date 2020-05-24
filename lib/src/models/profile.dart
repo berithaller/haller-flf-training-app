@@ -4,42 +4,36 @@
 import 'package:uuid/uuid.dart';
 
 class Profile {
-  /** technical ID of the record */
+  /// technical ID of the record */
   final String id;
 
-  /** name of the horse */
+  /// name of the horse */
   String name;
 
-  /** breed of the horse */
+  /// breed of the horse */
   String breed;
 
-  /** birthday of the horse */
+  /// birthday of the horse */
   DateTime birthday;
 
-  /** UUID: location of the horse */
+  /// UUID: location of the horse */
   String locationId;
 
-  /** UUID: owner of the horse */
+  /// UUID: owner of the horse */
   String ownerId;
 
-  /** just a remarks field */
+  /// just a remarks field */
   String remarks;
 
-  /**
-   * Default constructor.
-   */
+  /// Default constructor.
   Profile(this.id, this.name, this.breed, this.birthday, this.locationId,
       this.ownerId, this.remarks);
 
-  /**
-   * Factory method to create a new, empty profile
-   */
+  /// Factory method to create a new, empty profile
   factory Profile.createNew(String name) =>
       new Profile(Uuid().v4(), name, null, null, null, null, null);
 
-  /**
-   * @returns hashcode describing the content of the object
-   */
+  /// @returns hashcode describing the content of the object
   @override
   int get hashCode =>
       id.hashCode ^
@@ -50,9 +44,7 @@ class Profile {
       ownerId?.hashCode ^
       remarks?.hashCode;
 
-  /**
-   * @return <code>true</code> if <i>other</i> is identical or has identical content of the current object.
-   */
+  /// @return <code>true</code> if <i>other</i> is identical or has identical content of the current object.
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -65,9 +57,7 @@ class Profile {
           ownerId == other.ownerId &&
           remarks == other.remarks);
 
-  /**
-   * @return some description for the current object
-   */
+  /// @return some description for the current object
   @override
   String toString() {
     return 'Profile {id:$id, name:$name, breed:$breed}';

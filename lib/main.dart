@@ -1,3 +1,4 @@
+import 'package:flftrainingapp/screens.dart';
 /**
  * The foundation of any Flutter app, the main.dart file, should hold very little code and only serve as an overview to an app.
  * <p>
@@ -8,14 +9,16 @@
  */
 import 'package:flutter/material.dart';
 
+// Main entry point
 void main() => runApp(MyApp());
 
+// The application
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Equiapp',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -51,17 +54,43 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+/// Enumeration of available tabs for the application's bottom bar.
 
-  void _incrementCounter() {
+enum _EBottomAppTab { START, DIARY, PROFILES, SETTINGS }
+
+class _MyHomePageState extends State<MyHomePage> {
+  // the currently selected application tab
+  _EBottomAppTab _selectedAppTab = _EBottomAppTab.START;
+
+  /// Create the BottomNavigationBar that is shown in all screens.
+  BottomNavigationBar _createBottomNavigationBar() {
+    final BottomNavigationBar bar = BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        // Index 0: _EBottomAppTab.START
+        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Start')),
+
+        // Index 1: _EBottomAppTab.DIARY
+        BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_view_day), title: Text('Diary')),
+
+        // Index 2: _EBottomAppTab.PROFILES
+        BottomNavigationBarItem(
+            icon: Icon(Icons.contacts), title: Text('Horses')),
+
+        // Index 3: _EBottomAppTab.SETTINGS
+        BottomNavigationBarItem(
+            icon: Icon(Icons.settings), title: Text('Settings'))
+      ],
+      currentIndex: _selectedAppTab.index,
+      onTap: _onAppTabSelected,
+    );
+    return bar;
+  }
+
+  /// Event handler if an item in the BottomNavigationBar gets selected.
+  void _onAppTabSelected(int index) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _selectedAppTab = _EBottomAppTab.values.elementAt(index);
     });
   }
 
@@ -69,10 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
+    var bottomNavigationBar = _createBottomNavigationBar();
+
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -83,37 +111,18 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            HomeScreen(
+              // TODO
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

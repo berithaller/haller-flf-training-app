@@ -8,10 +8,10 @@ class ProfilesListScreen extends StatefulWidget
 {
   @protected
   @override
-  State<ProfilesListScreen> createState() => ProfilesListView();
+  State<ProfilesListScreen> createState() => _ProfilesListState();
 }
 
-class ProfilesListView extends State<ProfilesListScreen>
+class _ProfilesListState extends State<ProfilesListScreen>
 {
   @protected
   @override
