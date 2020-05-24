@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Equikinetic'),
     );
   }
 }
@@ -55,7 +55,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 /// Enumeration of available tabs for the application's bottom bar.
-
 enum _EBottomAppTab { START, DIARY, PROFILES, SETTINGS }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -83,6 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
       currentIndex: _selectedAppTab.index,
       onTap: _onAppTabSelected,
+      // TODO need theme support, how?
+      backgroundColor: Colors.white,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
     );
     return bar;
   }
@@ -94,12 +99,30 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  /// Return the screen according to the selected tab
+  Widget _createSelectedScreen(_EBottomAppTab selectedTab) {
+    switch (selectedTab) {
+      case _EBottomAppTab.START:
+        return HomeScreen();
+
+      case _EBottomAppTab.PROFILES:
+        return ProfilesListScreen();
+
+      case _EBottomAppTab.DIARY:
+      case _EBottomAppTab.SETTINGS:
+      default:
+        return Text("Not yet implemented");
+    }
+  }
+
+  /// Build the widget tree for the app.
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
 
     var bottomNavigationBar = _createBottomNavigationBar();
+    var currentScreen = _createSelectedScreen(_selectedAppTab);
 
     return Scaffold(
       appBar: AppBar(
@@ -113,12 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            HomeScreen(
-              // TODO
-            ),
+            currentScreen,
           ],
         ),
       ),

@@ -24,10 +24,8 @@ class _ProfilesListState extends State<ProfilesListScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("TODO - Profiles List Screen")
-      ),
+    return Container(
+      child: Text("soon ..."),
     );
   }
 
