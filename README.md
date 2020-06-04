@@ -21,6 +21,7 @@ For help getting started with Flutter, view our [online documentation](https://f
 samples, guidance on mobile development, and a full API reference.
 ### User Interface: Navigation
 - [BottomNavigationBar and Routes](https://medium.com/flutter/getting-to-the-bottom-of-navigation-in-flutter-b3e440b9386)
+- [Bottom Navigate Like the Pros in Flutter](https://medium.com/swlh/bottom-navigate-like-the-pros-in-flutter-8a48bdd5fed4)
 
 ### Dart
 - [Effective Dart: Style](https://dart.dev/guides/language/effective-dart/style)
