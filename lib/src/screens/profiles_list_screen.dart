@@ -13,6 +13,9 @@ class ProfilesListScreen extends StatefulWidget
 
 class _ProfilesListState extends State<ProfilesListScreen>
 {
+  /// TODO Patrick: obtain profile list from ProfileService
+  ProfileList _profileList = ProfileList();
+
   @protected
   @override
   void initState()
@@ -20,6 +23,10 @@ class _ProfilesListState extends State<ProfilesListScreen>
     super.initState();
 
     // TODO patrick: initialize controller for HomeScreen here.
+    // TODO temporary test data
+    _profileList.add( Profile.createNew("Hupfi #1") );
+    _profileList.add( Profile.createNew("Hupfi #3") );
+    _profileList.add( Profile.createNew("Hupfi #2") );
   }
 
   @override

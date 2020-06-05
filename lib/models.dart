@@ -2,7 +2,6 @@
  * Index for importing all models of the app
  */
 
-import 'src/models/profile.dart';
-
-/* exported interface */
+/// exported interface
 export 'src/models/profile.dart';
+export 'src/models/profile_list.dart';

@@ -108,8 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
       case _EBottomAppTab.PROFILES:
         return ProfilesListScreen();
 
-      case _EBottomAppTab.DIARY:
       case _EBottomAppTab.SETTINGS:
+        return SettingsScreen();
+
+      case _EBottomAppTab.DIARY:
       default:
         return Text("Not yet implemented");
     }

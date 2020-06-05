@@ -16,4 +16,10 @@ class ProfileList {
     int len = _profiles.length;
     return 'Profiles {$len}';
   }
+
+  /// Add a profile to the profile list
+  void add(Profile profile)
+  {
+    _profiles.add(profile);
+  }
 }
