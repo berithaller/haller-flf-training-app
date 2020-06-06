@@ -2,23 +2,16 @@
 /// Data Model: list of profiles.
 ///
 import 'package:flftrainingapp/models.dart';
+import 'generic_list.dart';
 
-class ProfileList {
-  /// private: list of profiles
-  List<Profile> _profiles = [];
-
+class ProfileList extends GenericObservableList<Profile> {
   /// @return list of managed profiles
-  List<Profile> get profiles => _profiles.toList();
+  List<Profile> get profiles => items;
 
   /// @return some description for the current object
   @override
   String toString() {
-    int len = _profiles.length;
+    int len = length;
     return 'Profiles {$len}';
-  }
-
-  /// Add a profile to the profile list
-  void add(Profile profile) {
-    _profiles.add(profile);
   }
 }

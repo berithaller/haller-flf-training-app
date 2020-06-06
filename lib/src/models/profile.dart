@@ -2,8 +2,9 @@
 /// Data Model: A horse profile.
 ///
 import 'package:uuid/uuid.dart';
+import 'identifiable.dart';
 
-class Profile {
+class Profile implements IIdentifiable {
   /// technical ID of the record */
   final String id;
 
@@ -62,4 +63,34 @@ class Profile {
   String toString() {
     return 'Profile {id:$id, name:$name, breed:$breed}';
   }
+
+  /// Converts the supplied [Map] to an instance of [Profile].
+  static Profile fromMap(dynamic message) {
+    if (message == null) {
+      throw ArgumentError('The parameter \'message\' must not be null.');
+    }
+
+    final Map<dynamic, dynamic> data = message;
+
+    return Profile(
+      data['id'],
+      data['name'],
+      data['breed'],
+      data['birthday'],
+      data['locationId'],
+      data['ownerId'],
+      data['remarks'],
+    );
+  }
+
+  /// Converts the [Profile] instance into a [Map] instance that can be serialized to JSON.
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'breed': breed,
+        'birthday': birthday,
+        'locationId': locationId,
+        'ownerId': ownerId,
+        'remarks': remarks
+      };
 }
