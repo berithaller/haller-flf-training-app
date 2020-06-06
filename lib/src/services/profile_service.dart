@@ -5,7 +5,6 @@
 /// - persisting profiles
 ///
 import 'package:flftrainingapp/models.dart';
-import 'application_context.dart';
 
 class ProfileService {
   /// in-memory copy of all known profiles

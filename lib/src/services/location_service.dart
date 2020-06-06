@@ -5,7 +5,6 @@
 /// - persisting locations
 ///
 import 'package:flftrainingapp/models.dart';
-import 'application_context.dart';
 
 class LocationService {
   /// in-memory copy of all known locations

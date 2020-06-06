@@ -14,7 +14,7 @@ class ProfilesListScreen extends StatefulWidget {
 class _ProfilesListState extends State<ProfilesListScreen> {
   /// reference to the ProfileService
   final ProfileService _profileService =
-  ApplicationContext().get(name: "profileService");
+      ApplicationContext().get(name: "profileService");
 
   ProfileList _profileList;
 
@@ -29,39 +29,22 @@ class _ProfilesListState extends State<ProfilesListScreen> {
     // - https://stackoverflow.com/questions/51901002/is-there-a-way-to-load-async-data-on-initstate-method
     // - https://flutter.institute/run-async-operation-on-widget-creation/
     _profileService.getProfileList().then(
-      // anonymous inner function
-            (data) {
-          setState(
-            // another anonymous inner function
-                  () {
-                _profileList = data;
-              });
-        }).catchError(
-      // anonymous inner function
-            (e) {
-          print("profiles_list_screen - catchError");
-          setState() {
-// TODO add logging and error handling
-          }
-        });
-  }
+        // anonymous inner function
+        (data) {
+      setState(
+          // another anonymous inner function
+          () {
+        _profileList = data;
+      });
+    }).catchError(
+        // anonymous inner function
+        (e) {
+      print("profiles_list_screen - catchError");
 
-  Widget _createCard(String title, String subtitle) {
-    return Card(
-      color: Colors.blue,
-      child: ListTile(
-        leading: Image(
-          image: NetworkImage(
-              "https://cdn.pixabay.com/photo/2018/04/25/22/10/silhouette-3350708_1280.png"),
-        ),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        isThreeLine: true,
-        dense: false,
-        trailing: Icon(Icons.more_vert),
-        onTap: () {},
-      ),
-    );
+      setState(() {
+// TODO add logging and error handling
+      });
+    });
   }
 
   Widget _createProfileCard(Profile profile) {
@@ -89,27 +72,23 @@ class _ProfilesListState extends State<ProfilesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = new List();
+    List<Widget> _children = new List();
     if (_profileList == null)
-      children.add(Text("No data"));
+      _children.add(Text("No data"));
     else {
       dynamic cards =
-      _profileList.profiles?.map((p) => _createProfileCard(p))?.toList();
-      children.addAll(cards);
+          _profileList.profiles?.map((p) => _createProfileCard(p))?.toList();
+      _children.addAll(cards);
     }
 
+    // add further controls
+    _children.add(SizedBox(height: 20));
+    _children.add(FloatingActionButton(
+      child: Icon(Icons.add),
+      onPressed: () {},
+    ));
+
     //return ListView!!!
-    return Column(
-      children: [
-        //_createCard("Pferdename2", "Andalusier"),
-        //_createCard("Pferdename1", "Haflinger"),
-        ...children,
-        SizedBox(height: 20),
-        FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {},
-        ),
-      ],
-    );
+    return Column(children: _children);
   }
 }
