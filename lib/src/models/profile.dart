@@ -20,15 +20,15 @@ class Profile implements IIdentifiable {
   /// UUID: location of the horse */
   String locationId;
 
-  /// UUID: owner of the horse */
-  String ownerId;
+  /// UUID: conact person of the horse */
+  String contactId;
 
   /// just a remarks field */
   String remarks;
 
   /// Default constructor.
   Profile(this.id, this.name, this.breed, this.birthday, this.locationId,
-      this.ownerId, this.remarks);
+      this.contactId, this.remarks);
 
   /// Factory method to create a new, empty profile
   factory Profile.createNew(String name) =>
@@ -42,7 +42,7 @@ class Profile implements IIdentifiable {
       breed?.hashCode ^
       birthday?.hashCode ^
       locationId?.hashCode ^
-      ownerId?.hashCode ^
+      contactId?.hashCode ^
       remarks?.hashCode;
 
   /// @return <code>true</code> if <i>other</i> is identical or has identical content of the current object.
@@ -55,7 +55,7 @@ class Profile implements IIdentifiable {
           breed == other.breed &&
           birthday == other.birthday &&
           locationId == other.locationId &&
-          ownerId == other.ownerId &&
+          contactId == other.contactId &&
           remarks == other.remarks);
 
   /// @return some description for the current object
@@ -78,7 +78,7 @@ class Profile implements IIdentifiable {
       data['breed'],
       data['birthday'],
       data['locationId'],
-      data['ownerId'],
+      data['contactId'],
       data['remarks'],
     );
   }
@@ -90,7 +90,7 @@ class Profile implements IIdentifiable {
         'breed': breed,
         'birthday': birthday,
         'locationId': locationId,
-        'ownerId': ownerId,
+        'contactId': contactId,
         'remarks': remarks
       };
 }
