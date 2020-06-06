@@ -1,6 +1,6 @@
-/**
- * Home Screen
- */
+///
+/// Home Screen
+///
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,14 +23,11 @@ class _HomeState extends State<HomeScreen> {
   Widget _createWelcome() {
     final Widget welcome = Container(
       decoration: BoxDecoration(
-        color: Colors.blue,
+          color: Colors.blue,
           backgroundBlendMode: BlendMode.colorBurn,
           border: Border.all(color: Colors.blue, width: 2)),
       child: Column(
-        children: <Widget>[
-          Text("Welcome"),
-          Icon(Icons.face)
-        ],
+        children: <Widget>[Text("Welcome"), Icon(Icons.face)],
       ),
     );
     return welcome;

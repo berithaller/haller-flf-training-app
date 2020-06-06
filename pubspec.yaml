@@ -30,6 +30,15 @@ dependencies:
   # https://pub.dev/packages/uuid
   uuid: ^2.0.4
 
+  # https://pub.dev/packages/geolocator
+  # https://medium.com/swlh/working-with-geolocation-and-geocoding-in-flutter-and-integration-with-maps-16fb0bc35ede
+  # https://github.com/johnpryan/flutter_map
+  geolocator: ^5.3.2+2
+
+  # https://pub.dev/packages/contacts_service
+  # https://github.com/lukasgit/flutter_contacts/blob/master/lib/contacts_service.dart
+  contacts_service: ^0.4.6
+
 dev_dependencies:
   # https://flutter.dev/docs/cookbook/testing/integration/introduction
   flutter_test:
@@ -38,6 +47,9 @@ dev_dependencies:
   # See https://flutter.dev/docs/cookbook/testing/integration/introduction    
   flutter_driver:
     sdk: flutter
+
+  # For unit testing
+  test: ^1.0.0
 
 
 # For information on the generic Dart part of this file, see the

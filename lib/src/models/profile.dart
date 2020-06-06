@@ -1,9 +1,10 @@
-/**
- * Data Model: A horse profile.
- */
+///
+/// Data Model: A horse profile.
+///
 import 'package:uuid/uuid.dart';
+import 'identifiable.dart';
 
-class Profile {
+class Profile implements IIdentifiable {
   /// technical ID of the record */
   final String id;
 
@@ -19,15 +20,15 @@ class Profile {
   /// UUID: location of the horse */
   String locationId;
 
-  /// UUID: owner of the horse */
-  String ownerId;
+  /// UUID: conact person of the horse */
+  String contactId;
 
   /// just a remarks field */
   String remarks;
 
   /// Default constructor.
   Profile(this.id, this.name, this.breed, this.birthday, this.locationId,
-      this.ownerId, this.remarks);
+      this.contactId, this.remarks);
 
   /// Factory method to create a new, empty profile
   factory Profile.createNew(String name) =>
@@ -41,7 +42,7 @@ class Profile {
       breed?.hashCode ^
       birthday?.hashCode ^
       locationId?.hashCode ^
-      ownerId?.hashCode ^
+      contactId?.hashCode ^
       remarks?.hashCode;
 
   /// @return <code>true</code> if <i>other</i> is identical or has identical content of the current object.
@@ -54,7 +55,7 @@ class Profile {
           breed == other.breed &&
           birthday == other.birthday &&
           locationId == other.locationId &&
-          ownerId == other.ownerId &&
+          contactId == other.contactId &&
           remarks == other.remarks);
 
   /// @return some description for the current object
@@ -62,4 +63,34 @@ class Profile {
   String toString() {
     return 'Profile {id:$id, name:$name, breed:$breed}';
   }
+
+  /// Converts the supplied [Map] to an instance of [Profile].
+  static Profile fromMap(dynamic message) {
+    if (message == null) {
+      throw ArgumentError('The parameter \'message\' must not be null.');
+    }
+
+    final Map<dynamic, dynamic> data = message;
+
+    return Profile(
+      data['id'],
+      data['name'],
+      data['breed'],
+      data['birthday'],
+      data['locationId'],
+      data['contactId'],
+      data['remarks'],
+    );
+  }
+
+  /// Converts the [Profile] instance into a [Map] instance that can be serialized to JSON.
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'breed': breed,
+        'birthday': birthday,
+        'locationId': locationId,
+        'contactId': contactId,
+        'remarks': remarks
+      };
 }
