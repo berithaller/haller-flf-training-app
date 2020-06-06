@@ -1,6 +1,6 @@
-/**
- * Data Model: A horse profile.
- */
+///
+/// Data Model: A horse profile.
+///
 import 'package:uuid/uuid.dart';
 
 class Profile {

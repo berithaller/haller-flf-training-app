@@ -1,10 +1,10 @@
-/**
- * Data Model: list of profiles.
- */
+///
+/// Data Model: list of profiles.
+///
 import 'package:flftrainingapp/models.dart';
 
 class ProfileList {
-  /// private: list of profiles */
+  /// private: list of profiles
   List<Profile> _profiles = [];
 
   /// @return list of managed profiles
@@ -18,8 +18,7 @@ class ProfileList {
   }
 
   /// Add a profile to the profile list
-  void add(Profile profile)
-  {
+  void add(Profile profile) {
     _profiles.add(profile);
   }
 }

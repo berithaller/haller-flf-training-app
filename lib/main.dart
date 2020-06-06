@@ -1,13 +1,13 @@
-import 'package:flftrainingapp/screens.dart';
-/**
- * The foundation of any Flutter app, the main.dart file, should hold very little code and only serve as an overview to an app.
- * <p>
- * The widget being run by runApp should be a StatelessWidget, and the itself should be no more complicated than a simple MaterialApp wrapped in the necessary BLoC providers.
- * The MaterialApp itself should have no heavy code in it, instead pulling the Theme and the widget screens from other files. 
- * <p>
- * @see https://medium.com/flutter-community/flutter-code-organization-de3a4c219149
- */
+///
+/// The foundation of any Flutter app, the main.dart file, should hold very little code and only serve as an overview to an app.
+///
+/// The widget being run by runApp should be a StatelessWidget, and the itself should be no more complicated than a simple MaterialApp wrapped in the necessary BLoC providers.
+/// The MaterialApp itself should have no heavy code in it, instead pulling the Theme and the widget screens from other files.
+///
+/// @see https://medium.com/flutter-community/flutter-code-organization-de3a4c219149
+///
 import 'package:flutter/material.dart';
+import 'package:flftrainingapp/screens.dart';
 
 // Main entry point
 void main() => runApp(MyApp());
