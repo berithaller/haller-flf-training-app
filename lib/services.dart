@@ -1,6 +1,6 @@
-/**
- * Index for importing application context and services
- */
+///
+/// Index for importing application context and services
+///
 
 /// exported interface
 export 'src/services/application_context.dart';

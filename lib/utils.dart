@@ -1,6 +1,6 @@
-/**
- * Index for importing utility classes
- */
+///
+/// Index for importing utility classes
+///
 
 /// exported interface
 export 'src/utils/assert_exception.dart';

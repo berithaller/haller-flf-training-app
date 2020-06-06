@@ -1,6 +1,6 @@
-/**
- * Index for importing all screens of the app
- */
+///
+/// Index for importing all screens of the app
+///
 
 /// exported interface
 export 'src/screens/home_screen.dart';

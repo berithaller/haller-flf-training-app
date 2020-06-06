@@ -1,6 +1,6 @@
-/**
- * Index for importing all models of the app
- */
+///
+/// Index for importing all models of the app
+///
 
 /// exported interface
 export 'src/models/profile.dart';
