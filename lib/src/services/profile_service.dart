@@ -8,15 +8,19 @@ import 'package:flftrainingapp/models.dart';
 import 'application_context.dart';
 
 class ProfileService {
+  /// in-memory copy of all known profiles
+  final ProfileList _profileList = new ProfileList();
+
   ///
   /// Get all stored profiles
   ///
   Future<ProfileList> getProfileList() async {
-    ProfileList result = new ProfileList();
-    result.add(Profile.createNew("Hupfi 1"));
-    result.add(Profile.createNew("Hupfi 2"));
-    result.add(Profile.createNew("Hupfi 3"));
-    return result;
+    if (_profileList.isEmpty()) {
+      _profileList.add(Profile.createNew("Hupfi 1"));
+      _profileList.add(Profile.createNew("Hupfi 2"));
+      _profileList.add(Profile.createNew("Hupfi 3"));
+    }
+    return _profileList;
   }
 }
 
