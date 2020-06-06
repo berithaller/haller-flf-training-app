@@ -20,11 +20,27 @@ class _ProfilesListState extends State<ProfilesListScreen> {
 
   @protected
   @override
-  void initState() async {
+  void initState() {
     super.initState();
 
     // TODO temporary test data
-    _profileList = await _profileService.getProfileList();
+    // Asynchrously fetch all profiles
+    // See
+    // - https://stackoverflow.com/questions/51901002/is-there-a-way-to-load-async-data-on-initstate-method
+    // - https://flutter.institute/run-async-operation-on-widget-creation/
+    _profileService.getProfileList().then(
+        // anonymous inner function
+        (data) {
+      setState() {
+        _profileList = data;
+      }
+    }).catchError(
+        // anonymous inner function
+        (e) {
+      setState() {
+// TODO add logging and error handling
+      }
+    });
   }
 
   @override
