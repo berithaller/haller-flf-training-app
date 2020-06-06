@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/profile_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/profile_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/profiles_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/profiles_list_screen.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +13,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_25" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="AVD-Pixel2_API25" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -26,6 +24,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Berit Haller &lt;berit.haller@haller-gmbh.de&gt;" />
         <option value="Patrick Haller &lt;patrick.haller@haller-gmbh.de&gt;" />
       </list>
     </option>
@@ -35,22 +34,24 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1b9K9gAbFWfeZbimk8Am9nT9mE4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/src" />
-    <property name="settings.editor.selected.configurable" value="editor.breadcrumbs" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib\src" />
       <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib\src\screens" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -90,7 +91,28 @@
       <option name="project" value="LOCAL" />
       <updated>1590254930916</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="UI Documentation Navigation">
+      <created>1591285583041</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1591285583041</updated>
+    </task>
+    <task id="LOCAL-00004" summary="model: cleanup, added Settings screen&#10;&#10;- cleaned models.dart and screens.dart export interfaces&#10;- added SettingsScreen as 4th tab&#10;- added some temporary test data to the ProfileListScreen">
+      <created>1591386953474</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1591386953474</updated>
+    </task>
+    <task id="LOCAL-00005" summary="profile-list-screen: rendering of profile cards added">
+      <created>1591447271578</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1591447271578</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +131,31 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Coalesced README.md files" />
     <MESSAGE value="Added more initial structure&#10;&#10;- first data model classes added&#10;- some empty screens added&#10;- index files for easier importing of models added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more initial structure&#10;&#10;- first data model classes added&#10;- some empty screens added&#10;- index files for easier importing of models added" />
+    <MESSAGE value="UI Documentation Navigation" />
+    <MESSAGE value="model: cleanup, added Settings screen" />
+    <MESSAGE value="model: cleanup, added Settings screen&#10;&#10;- cleaned models.dart and screens.dart export interfaces&#10;- added SettingsScreen as 4th tab&#10;- added some temporary test data to the ProfileListScreen" />
+    <MESSAGE value="profile-list-screen: rendering of profile cards added" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile-list-screen: rendering of profile cards added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>53</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>63</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>103</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
