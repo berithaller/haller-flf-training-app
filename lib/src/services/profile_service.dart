@@ -15,7 +15,7 @@ class ProfileService {
   /// Get all stored profiles
   ///
   Future<ProfileList> getProfileList() async {
-    if (_profileList.isEmpty()) {
+    if (_profileList.isEmpty) {
       _profileList.add(Profile.createNew("Hupfi 1"));
       _profileList.add(Profile.createNew("Hupfi 2"));
       _profileList.add(Profile.createNew("Hupfi 3"));

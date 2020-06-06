@@ -14,6 +14,9 @@ class GenericObservableList<IT extends IIdentifiable> {
   /// Count the number of items
   int get length => _items.length;
 
+  /// Determine if list is empty
+  bool get isEmpty => _items.isEmpty;
+
   /// @return some description for the current object
   @override
   String toString() {

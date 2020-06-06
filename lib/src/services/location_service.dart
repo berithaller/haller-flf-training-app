@@ -15,7 +15,7 @@ class LocationService {
   /// Get all stored locations
   ///
   Future<LocationList> getLocationList() async {
-    if (_locationList.isEmpty()) {
+    if (_locationList.isEmpty) {
       _locationList.add(Location.createNew("Koppel Oberbaumgarten"));
       _locationList.add(Location.createNew("Eriskirch, Garten"));
       _locationList.add(Location.createNew("Pferdehotel Zum Nassen Pony"));
