@@ -1,32 +1,30 @@
-/**
- * List of Profiles Screen
- */
+///
+/// List of Profiles Screen
+///
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/models.dart';
+import 'package:flftrainingapp/services.dart';
 
-class ProfilesListScreen extends StatefulWidget
-{
+class ProfilesListScreen extends StatefulWidget {
   @protected
   @override
   State<ProfilesListScreen> createState() => _ProfilesListState();
 }
 
-class _ProfilesListState extends State<ProfilesListScreen>
-{
-  /// TODO Patrick: obtain profile list from ProfileService
-  ProfileList _profileList = ProfileList();
+class _ProfilesListState extends State<ProfilesListScreen> {
+  /// reference to the ProfileService
+  final ProfileService _profileService =
+      ApplicationContext().get(name: "profileService");
+
+  ProfileList _profileList;
 
   @protected
   @override
-  void initState()
-  {
+  void initState() async {
     super.initState();
 
-    // TODO patrick: initialize controller for HomeScreen here.
     // TODO temporary test data
-    _profileList.add( Profile.createNew("Hupfi #1") );
-    _profileList.add( Profile.createNew("Hupfi #3") );
-    _profileList.add( Profile.createNew("Hupfi #2") );
+    _profileList = await _profileService.getProfileList();
   }
 
   @override
@@ -35,5 +33,4 @@ class _ProfilesListState extends State<ProfilesListScreen>
       child: Text("soon ..."),
     );
   }
-
 }
