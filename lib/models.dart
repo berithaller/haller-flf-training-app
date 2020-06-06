@@ -7,3 +7,5 @@ export 'src/models/profile.dart';
 export 'src/models/profile_list.dart';
 export 'src/models/location.dart';
 export 'src/models/location_list.dart';
+export 'src/models/training_level_definition.dart';
+export 'src/models/training.dart';
