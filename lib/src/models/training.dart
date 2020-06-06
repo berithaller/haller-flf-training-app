@@ -24,6 +24,9 @@ class Training {
 
   /// Initializing constructor
   Training(this._profile, this._trainingLevelDefinition);
+
+  /// Returns the overall list of events
+  List<TrainingEvent> get events => List.unmodifiable(_events);
 }
 
 enum ETrainingEventType {

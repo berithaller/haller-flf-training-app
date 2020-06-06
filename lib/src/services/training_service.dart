@@ -84,4 +84,12 @@ class TrainingService {
   TrainingBuilder builder() {
     return new TrainingBuilder();
   }
+
+  ///
+  /// Start the execution of a Training
+  ///
+  TrainingExecution execute(Training training) {
+    TrainingExecution result = new TrainingExecution(training);
+    return result;
+  }
 }
