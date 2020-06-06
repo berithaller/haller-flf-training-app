@@ -3,6 +3,7 @@
 /// - managing statically defined Training Level Definitions
 ///
 import 'package:flftrainingapp/models.dart';
+import 'training_builder.dart';
 
 class TrainingService {
   /// in-memory copy of all known TrainingLevelDefinitions
@@ -76,4 +77,11 @@ class TrainingService {
   ///
   List<TrainingLevelDefinition> get trainingLevelDefinitions =>
       List.unmodifiable(_trainingLevelDefinitions);
+
+  ///
+  /// Get a builder to create a Training
+  ///
+  TrainingBuilder builder() {
+    return new TrainingBuilder();
+  }
 }

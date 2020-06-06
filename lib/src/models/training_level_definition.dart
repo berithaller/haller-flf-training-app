@@ -39,7 +39,7 @@ class TrainingLevelDefinition {
 
   /// Initializing constructor
   TrainingLevelDefinition(
-      this.name,
+      {this.name,
       this.description,
       this.nrOfWorkSets,
       this.timeToRampUp,
@@ -49,7 +49,7 @@ class TrainingLevelDefinition {
       this.announcePause,
       this.announceEndOfTraining,
       this.nrOfAnnouncements,
-      this.durationOfAnnouncement);
+      this.durationOfAnnouncement});
 
   /// calculate number of pauses
   int get nrOfPauses => max(0, nrOfWorkSets - 1);

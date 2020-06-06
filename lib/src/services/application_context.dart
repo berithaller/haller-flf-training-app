@@ -19,6 +19,7 @@ class ApplicationContext implements IContext {
     // TODO find more elegant way to initialize services
     register(ProfileService(), "profileService");
     register(LocationService(), "locationService");
+    register(TrainingService(), "trainingService");
   }
 
   /// Singleton constructor
