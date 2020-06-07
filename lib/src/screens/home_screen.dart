@@ -43,7 +43,9 @@ class _HomeState extends State<HomeScreen> {
 // no plan what ListBody does, it is not scrollable either, but at least there is no exception
     return Column(
       children: <Widget>[
-        Container(child: Text("Willkommen in der Timerapp!", style: TextStyle(fontSize: 20, letterSpacing: 1))),
+        Container(
+            child: Text("Willkommen in der Timerapp!",
+                style: TextStyle(fontSize: 20, letterSpacing: 1))),
         SizedBox(height: 80),
         Container(
           padding: EdgeInsets.all(15),
