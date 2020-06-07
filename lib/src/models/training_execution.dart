@@ -2,6 +2,7 @@
 /// Data Model: a (currently active) training execution
 ///
 
+import 'dart:async';
 import 'training.dart';
 
 enum EState {
@@ -49,10 +50,24 @@ class TrainingExecution {
   /// position of the current Training Event
   int _currentPosition;
 
+  /// Stream of TrainingEvents for a caller to subscribe to.
+  /// This can be used by the user interface to retrieve
+  /// asynchronous events from the Training Execution.
+  ///
+  /// The asynchronous, single listener stream does buffer
+  /// unprocessed events until the listener receives them.
+  final StreamController<TrainingEvent> _eventStreamController =
+      new StreamController<TrainingEvent>();
+
   /// The StopWatch tracks the time into the Training.
   /// - it is stoppable and restartable
   /// - it starts with base 0 when the Training Execution is started
   final Stopwatch _stopWatch = new Stopwatch();
+
+  /// Time that looks for events to process every
+  /// n milliseconds and pumps [TrainingEvent]s into
+  /// the event stream.
+  Timer _timer;
 
   ///
   /// Return the milliseconds elapsed since start of the training execution
@@ -65,13 +80,14 @@ class TrainingExecution {
   void start() {
     assert(_state == EState.INITIAL);
 
-    // TODO not yet implemented
     _state = EState.RUNNING;
 
     // Create our own little cursor and a private copy of the Training's event
     // list. And restart the StopWatch.
     _currentPosition = 0;
     _stopWatch.reset();
+
+    _timerCreate();
     _stopWatch.start();
   }
 
@@ -81,7 +97,6 @@ class TrainingExecution {
   void pause() {
     assert(_state == EState.RUNNING);
 
-    // TODO not yet implemented
     _state = EState.PAUSED;
     _stopWatch.stop();
   }
@@ -92,7 +107,6 @@ class TrainingExecution {
   void resume() {
     assert(_state == EState.PAUSED);
 
-    // TODO not yet implemented
     _state = EState.RUNNING;
     _stopWatch.start();
   }
@@ -103,9 +117,12 @@ class TrainingExecution {
   void abort() {
     assert(_state == EState.RUNNING || _state == EState.PAUSED);
 
-    // TODO not yet implemented
     _state = EState.ABORTED;
     _stopWatch.stop();
+
+    // stop the timer and close the event stream
+    _timerDestroy();
+    _eventStreamController.close();
   }
 
   ///
@@ -114,12 +131,43 @@ class TrainingExecution {
   void complete() {
     assert(_state == EState.RUNNING);
 
-    // TODO not yet implemented
     _state = EState.COMPLETED;
     _stopWatch.stop();
+
+    // stop the timer and close the event stream
+    _timerDestroy();
+    _eventStreamController.close();
   }
 
+  ///
+  /// Create a timer that periodically
+  /// pumps [TrainingEvent]s into the event stream.
+  ///
+  void _timerCreate() {
+    assert(_timer == null);
+
+    // Create and start the timer that pumps events
+    _timer = Timer.periodic(new Duration(milliseconds: 100),
+        // anonymous callback function
+        (Timer t) {
+      _pumpEvents();
+    });
+  }
+
+  ///
+  /// Stop the timer from producing events,
+  /// and destroy it.
+  ///
+  void _timerDestroy() {
+    if (_timer != null) {
+      _timer.cancel();
+      _timer = null;
+    }
+  }
+
+  ///
   /// return the next training event and advance the cursor
+  ///
   TrainingEvent _nextEvent() {
     if (_currentPosition >= _training.events.length)
       return null;
@@ -127,7 +175,9 @@ class TrainingExecution {
       return _training.events[_currentPosition++];
   }
 
+  ///
   /// return the next training event without advancing the cursor
+  ///
   TrainingEvent _peekEvent() {
     if (_currentPosition >= _training.events.length)
       return null;
@@ -151,7 +201,7 @@ class TrainingExecution {
       // check if the event is already due to be processed
       if (event != null && event.timestamp <= tsNow) {
         // push the event onto the stream
-        // TODO await stream push
+        _eventStreamController.sink.add(event);
 
         // consume the event
         _nextEvent();
@@ -162,7 +212,11 @@ class TrainingExecution {
     } while (true);
   }
 
-// TODO create an Event Provider or Stream to listen to asynchronously
+  ///
+  /// Return a stream of [TrainingEvent] a caller can listen to
+  ///
+  Stream<TrainingEvent> get eventStream => _eventStreamController.stream;
+
 // TODO allow querying overall execution percentage
 // TODO allow query current event execution percentage
 
