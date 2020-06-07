@@ -49,6 +49,16 @@ class TrainingExecution {
   /// position of the current Training Event
   int _currentPosition;
 
+  /// The StopWatch tracks the time into the Training.
+  /// - it is stoppable and restartable
+  /// - it starts with base 0 when the Training Execution is started
+  final Stopwatch _stopWatch = new Stopwatch();
+
+  ///
+  /// Return the milliseconds elapsed since start of the training execution
+  ///
+  int get timeIntoTraining => _stopWatch.elapsedMilliseconds;
+
   ///
   /// Start the training execution
   ///
@@ -58,8 +68,11 @@ class TrainingExecution {
     // TODO not yet implemented
     _state = EState.RUNNING;
 
-    // create our own little cursor and a private copy of the Training's event list
+    // Create our own little cursor and a private copy of the Training's event
+    // list. And restart the StopWatch.
     _currentPosition = 0;
+    _stopWatch.reset();
+    _stopWatch.start();
   }
 
   ///
@@ -70,6 +83,7 @@ class TrainingExecution {
 
     // TODO not yet implemented
     _state = EState.PAUSED;
+    _stopWatch.stop();
   }
 
   ///
@@ -80,6 +94,7 @@ class TrainingExecution {
 
     // TODO not yet implemented
     _state = EState.RUNNING;
+    _stopWatch.start();
   }
 
   ///
@@ -90,6 +105,7 @@ class TrainingExecution {
 
     // TODO not yet implemented
     _state = EState.ABORTED;
+    _stopWatch.stop();
   }
 
   ///
@@ -100,6 +116,7 @@ class TrainingExecution {
 
     // TODO not yet implemented
     _state = EState.COMPLETED;
+    _stopWatch.stop();
   }
 
   /// return the next training event and advance the cursor
@@ -108,6 +125,41 @@ class TrainingExecution {
       return null;
     else
       return _training.events[_currentPosition++];
+  }
+
+  /// return the next training event without advancing the cursor
+  TrainingEvent _peekEvent() {
+    if (_currentPosition >= _training.events.length)
+      return null;
+    else
+      return _training.events[_currentPosition];
+  }
+
+  ///
+  /// Pump events from the Training until the current
+  /// elapsed time within the TrainingExecution is reached.
+  /// And push these events to the event stream,
+  /// so listeners can react to them.
+  ///
+  void _pumpEvents() async {
+    final int tsNow = _stopWatch.elapsedMilliseconds;
+
+    do {
+      final TrainingEvent event = _peekEvent();
+
+      // if we still have events left in the Training to process,
+      // check if the event is already due to be processed
+      if (event != null && event.timestamp <= tsNow) {
+        // push the event onto the stream
+        // TODO await stream push
+
+        // consume the event
+        _nextEvent();
+      } else {
+        // no more events to pump, leave the loop.
+        return;
+      }
+    } while (true);
   }
 
 // TODO create an Event Provider or Stream to listen to asynchronously
