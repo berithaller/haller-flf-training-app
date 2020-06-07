@@ -9,6 +9,9 @@
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/screens.dart';
 
+//import Url of training_page for routing
+//import 'package:haller-flf-training-app/training_page.dart';
+
 // Main entry point
 void main() => runApp(MyApp());
 
@@ -32,6 +35,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Equikinetic'),
+      //initialisation of routs
+      //also see https://flutter.dev/docs/cookbook/navigation/named-routes
+      // routes: {
+      //   '/training_page': (context) => Training(),
     );
   }
 }
@@ -112,6 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return SettingsScreen();
 
       case _EBottomAppTab.DIARY:
+        return TrainingPage();
+
       default:
         return Text("Not yet implemented");
     }
