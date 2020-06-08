@@ -30,7 +30,8 @@ class Training {
 
   /// Set the list of events
   set events(newEvents) {
-    this.events = newEvents;
+    this._events.clear();
+    this._events.addAll(newEvents);
   }
 }
 
@@ -111,8 +112,20 @@ class TrainingEvent implements Comparable<TrainingEvent> {
       result = (this.timestamp - other.timestamp);
 
       // equal timestamps
-      if (result == 0) result = (this.order - other.order);
+      if (result == 0) {
+        result = (this.order - other.order);
+      }
     }
+    return result;
+  }
+
+  ///
+  /// Return descriptive string for the current object
+  ///
+  @override
+  String toString() {
+    String result =
+        "TrainingEvent[$eventType: timestamp=$timestamp, order=$order] : $description";
     return result;
   }
 }

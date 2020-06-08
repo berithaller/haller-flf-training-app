@@ -123,7 +123,7 @@ class TrainingBuilder {
       }
 
       final bool needPause =
-          (iWorkSet >= (_trainingLevelDefinition.nrOfWorkSets - 1));
+          (iWorkSet < (_trainingLevelDefinition.nrOfWorkSets - 1));
       if (needPause) {
         // 2.3 - unless last work-set: announcement to the pause
         {
@@ -195,8 +195,8 @@ class TrainingBuilder {
           training,
           ETrainingEventType.TRAINING_END,
           order++,
-          0,
-          _trainingLevelDefinition.timeToRampUp);
+          time,
+          0);
       events.add(e);
       time += e.duration;
     }

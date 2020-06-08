@@ -196,6 +196,11 @@ class TrainingExecution {
   void _postIntermediateEvent(ETrainingEventType eventType) {
     final TrainingEvent event =
         TrainingEvent.intermediate(_training, eventType);
+
+    if( ETrainingEventType.EXECUTION_UPDATE != eventType ) {
+      print("Sending event: " + event.toString());
+    }
+
     _eventStreamController.sink.add(event);
   }
 
@@ -224,6 +229,7 @@ class TrainingExecution {
       // check if the event is already due to be processed
       if (event != null && event.timestamp <= tsNow) {
         // push the event onto the stream
+        print("Sending event: " + event.toString());
         _eventStreamController.sink.add(event);
         pushedAnEvent = true;
 

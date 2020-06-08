@@ -26,6 +26,14 @@ class _TrainingPageState extends State<TrainingPage> {
   TrainingExecution _currentTrainingExecution;
 
   Widget build(BuildContext context) {
+    // TODO temporary: show state of currently executing training
+    String trainingExecution;
+    if (_currentTrainingExecution != null)
+      trainingExecution = "Training: " +
+          _millisecondsToDuration(_currentTrainingExecution.timeIntoTraining);
+    else
+      trainingExecution = "Nothing is executing";
+
     return Column(
       children: <Widget>[
         Container(
@@ -39,6 +47,10 @@ class _TrainingPageState extends State<TrainingPage> {
         SizedBox(height: 30),
         Container(
           child: Text("Einheiten," " Arbeit," " Pause"),
+        ),
+        SizedBox(height: 30),
+        Container(
+          child: Text("Laufendes Training:" + trainingExecution),
         ),
         SizedBox(height: 30),
         stopPlayPause(),
@@ -86,7 +98,10 @@ class _TrainingPageState extends State<TrainingPage> {
           _trainingService.execute(training);
       _currentTrainingExecution = trainingExecution;
 
-      // 3 - start the training execution
+      // 3 - start listening to the training execution
+      _currentTrainingExecution.eventStream.listen(_onTrainingEvent);
+
+      // 4 - start the training execution
       _currentTrainingExecution.start();
     });
   }
@@ -99,6 +114,24 @@ class _TrainingPageState extends State<TrainingPage> {
 
     setState(() {
       _currentTrainingExecution.abort();
+    });
+  }
+
+  ///
+  /// Process an event received from the [TrainingExecution]
+  ///
+  void _onTrainingEvent(TrainingEvent event) async {
+    ETrainingEventType eventType = event.eventType;
+    int timestamp = event.timestamp;
+    int order = event.order;
+    String description = event.description;
+
+    if (eventType != ETrainingEventType.EXECUTION_UPDATE) {
+      print("Received event: " + event.toString());
+    }
+
+    setState(() {
+      // TODO refresh the UI
     });
   }
 
