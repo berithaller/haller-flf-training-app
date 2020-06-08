@@ -81,6 +81,7 @@ class TrainingExecution {
     assert(_state == EState.INITIAL);
 
     _state = EState.RUNNING;
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_START);
 
     // Create our own little cursor and a private copy of the Training's event
     // list. And restart the StopWatch.
@@ -96,6 +97,7 @@ class TrainingExecution {
   ///
   void pause() {
     assert(_state == EState.RUNNING);
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_PAUSE);
 
     _state = EState.PAUSED;
     _stopWatch.stop();
@@ -106,6 +108,7 @@ class TrainingExecution {
   ///
   void resume() {
     assert(_state == EState.PAUSED);
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_RESUME);
 
     _state = EState.RUNNING;
     _stopWatch.start();
@@ -118,6 +121,7 @@ class TrainingExecution {
     assert(_state == EState.RUNNING || _state == EState.PAUSED);
 
     _state = EState.ABORTED;
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_ABORT);
     _stopWatch.stop();
 
     // stop the timer and close the event stream
@@ -132,6 +136,7 @@ class TrainingExecution {
     assert(_state == EState.RUNNING);
 
     _state = EState.COMPLETED;
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_COMPLETE);
     _stopWatch.stop();
 
     // stop the timer and close the event stream
@@ -186,13 +191,31 @@ class TrainingExecution {
   }
 
   ///
+  /// Create and post an intermediate event to the event stream.
+  ///
+  void _postIntermediateEvent(ETrainingEventType eventType) {
+    final TrainingEvent event =
+        TrainingEvent.intermediate(_training, eventType);
+    _eventStreamController.sink.add(event);
+  }
+
+  ///
   /// Pump events from the Training until the current
   /// elapsed time within the TrainingExecution is reached.
   /// And push these events to the event stream,
   /// so listeners can react to them.
   ///
+  /// The method is called frequently from the timer.
+  /// It enables a listeneing client to react to events
+  /// of the training and update its state or presentation
+  /// frequently even in between [TrainingEvent]s happening.
+  /// Therefore, if no [TrainingEvent] is relayed, a
+  /// intermediate event is generated with type
+  /// ETrainingEventType.EXECUTION_UPDATE.
+  ///
   void _pumpEvents() async {
     final int tsNow = _stopWatch.elapsedMilliseconds;
+    bool pushedAnEvent = false;
 
     do {
       final TrainingEvent event = _peekEvent();
@@ -202,14 +225,25 @@ class TrainingExecution {
       if (event != null && event.timestamp <= tsNow) {
         // push the event onto the stream
         _eventStreamController.sink.add(event);
+        pushedAnEvent = true;
 
         // consume the event
         _nextEvent();
       } else {
         // no more events to pump, leave the loop.
-        return;
+        break;
       }
     } while (true);
+
+    // Send a ETrainingEventUpdate event to let callers
+    // update their state frequently
+    // - if no other event was pushed, hence no other reason to update the
+    // state exists in the event stream
+    // - unless the stream already contains a pending EXECUTION_UPDATE event
+    // TODO
+    if (!pushedAnEvent) {
+      _postIntermediateEvent(ETrainingEventType.EXECUTION_UPDATE);
+    }
   }
 
   ///

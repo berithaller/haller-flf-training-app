@@ -27,6 +27,11 @@ class Training {
 
   /// Returns the overall list of events
   List<TrainingEvent> get events => List.unmodifiable(_events);
+
+  /// Set the list of events
+  set events(newEvents) {
+    this.events = newEvents;
+  }
 }
 
 enum ETrainingEventType {
@@ -37,7 +42,25 @@ enum ETrainingEventType {
   WORKSET_END,
   PAUSE_START,
   PAUSE_END,
-  TRAINING_END
+  TRAINING_END,
+
+  /// execution control event: execution has started
+  EXECUTION_START,
+
+  /// execution control event: execution has paused
+  EXECUTION_PAUSE,
+
+  /// execution control event: execution has resumed
+  EXECUTION_RESUME,
+
+  /// execution control event: execution has aborted
+  EXECUTION_ABORT,
+
+  /// execution control event: execution has completed
+  EXECUTION_COMPLETE,
+
+  /// execution control event: timer update tick
+  EXECUTION_UPDATE
 }
 
 class TrainingEvent implements Comparable<TrainingEvent> {
@@ -65,6 +88,18 @@ class TrainingEvent implements Comparable<TrainingEvent> {
   TrainingEvent(
       this.training, this.eventType, this.order, this.timestamp, this.duration,
       [this.description = ""]);
+
+  ///
+  /// Factory constructor to create intermediate events
+  ///
+  static TrainingEvent intermediate(
+      Training training, ETrainingEventType eventType,
+      [String description = ""]) {
+    // TODO can we get away with timestamp == duration == -1?
+    final TrainingEvent event =
+        new TrainingEvent(training, eventType, -1, -1, 0, description);
+    return event;
+  }
 
   /// compare two [TrainingEvent], their natural sort order is chronologically ascending
   @override

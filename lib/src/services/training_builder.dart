@@ -205,6 +205,7 @@ class TrainingBuilder {
     events.sort();
 
     // 9 - produce result
+    training.events = events;
     return training;
   }
 }
