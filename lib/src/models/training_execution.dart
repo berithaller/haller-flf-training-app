@@ -197,7 +197,7 @@ class TrainingExecution {
     final TrainingEvent event =
         TrainingEvent.intermediate(_training, eventType);
 
-    if( ETrainingEventType.EXECUTION_UPDATE != eventType ) {
+    if (ETrainingEventType.EXECUTION_UPDATE != eventType) {
       print("Sending event: " + event.toString());
     }
 

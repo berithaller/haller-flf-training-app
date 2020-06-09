@@ -1,3 +1,4 @@
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flftrainingapp/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,10 @@ class TrainingPage extends StatefulWidget {
 class _TrainingPageState extends State<TrainingPage> {
   @override
   String dropdownValue = 'One';
+
+  /// Flutter Text-To-Speech engine
+  /// https://flutter.de/artikel/text-to-speech.html
+  FlutterTts _flutterTts;
 
   /// reference to the ProfileService
   final ProfileService _profileService =
@@ -26,6 +31,33 @@ class _TrainingPageState extends State<TrainingPage> {
   /// the currently active training execution (valid after START button has been pressed)
   TrainingExecution _currentTrainingExecution;
 
+  ///
+  /// Initialize the state
+  ///
+  @override
+  void initState() {
+    super.initState();
+
+    // initialize Text-To-Speech
+    _flutterTts = new FlutterTts();
+    _flutterTts.setLanguage("de-DE");
+    _flutterTts.setSpeechRate(1.0);
+    _flutterTts.setVolume(1.0);
+    _flutterTts.setPitch(1.0);
+  }
+
+  ///
+  /// Cleanup
+  ///
+  @override
+  void dispose() {
+    super.dispose();
+    _flutterTts.stop();
+  }
+
+  ///
+  /// Build the Widget State
+  ///
   Widget build(BuildContext context) {
     // TODO temporary: show state of currently executing training
     String trainingExecution;
@@ -141,6 +173,21 @@ class _TrainingPageState extends State<TrainingPage> {
 
     if (eventType != ETrainingEventType.EXECUTION_UPDATE) {
       print("Received event: " + event.toString());
+    }
+
+    switch (event.eventType) {
+      case ETrainingEventType.ANNOUNCEMENT:
+        // if the event has a text to speak
+        if (event.textToSpeech != null && event.textToSpeech.isNotEmpty) {
+          // stop the engine if it is currently speaking
+          await _flutterTts.stop();
+          await _flutterTts.speak(event.textToSpeech.toLowerCase());
+        }
+        break;
+
+      default:
+        // ignore
+        break;
     }
 
     setState(() {

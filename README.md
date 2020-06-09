@@ -2,6 +2,12 @@
 
 Four-Legged-Friends: Equikinetic Trainings App for mobile devices
 
+
+## Architecture
+### Data Model
+![Data Model](doc/data-model.jpg)
+
+
 ## Technology
 - [flutter](https://flutter.dev/)
 

@@ -72,6 +72,7 @@ class TrainingBuilder {
           order++,
           0,
           _trainingLevelDefinition.timeToRampUp);
+      e.textToSpeech = "get ready";
       events.add(e);
       time += e.duration;
     }
@@ -95,6 +96,9 @@ class TrainingBuilder {
               timeAnnouncement,
               _trainingLevelDefinition.durationOfAnnouncement,
               "Announcement $iAnnouncement for Work-Set $iWorkSet");
+          e.textToSpeech =
+              (_trainingLevelDefinition.nrOfAnnouncements - iAnnouncement)
+                  .toString();
           events.add(e);
           timeAnnouncement += e.duration;
         }
@@ -109,6 +113,7 @@ class TrainingBuilder {
             time,
             _trainingLevelDefinition.durationOfWorkSet,
             "Start of Work-Set $iWorkSet");
+        e0.textToSpeech = "go go go";
         events.add(e0);
         time += e0.duration;
 
@@ -140,6 +145,9 @@ class TrainingBuilder {
                 timeAnnouncement,
                 _trainingLevelDefinition.durationOfAnnouncement,
                 "Announcement $iAnnouncement for Pause after Work-Set $iWorkSet");
+            e.textToSpeech =
+                (_trainingLevelDefinition.nrOfAnnouncements - iAnnouncement)
+                    .toString();
             events.add(e);
             timeAnnouncement += e.duration;
           }
@@ -154,6 +162,7 @@ class TrainingBuilder {
               time,
               _trainingLevelDefinition.durationOfWorkSet,
               "Start of Pause after Work-Set $iWorkSet");
+          e0.textToSpeech = "pause";
           events.add(e0);
           time += e0.duration;
 
@@ -184,6 +193,9 @@ class TrainingBuilder {
             timeAnnouncement,
             _trainingLevelDefinition.durationOfAnnouncement,
             "Announcement $iAnnouncement for End of Training");
+        e.textToSpeech =
+            (_trainingLevelDefinition.nrOfAnnouncements - iAnnouncement)
+                .toString();
         events.add(e);
         timeAnnouncement += e.duration;
       }
@@ -192,11 +204,8 @@ class TrainingBuilder {
     // 3.2 - end-of-training
     {
       TrainingEvent e = new TrainingEvent(
-          training,
-          ETrainingEventType.TRAINING_END,
-          order++,
-          time,
-          0);
+          training, ETrainingEventType.TRAINING_END, order++, time, 0);
+      e.textToSpeech = "Well done, training has ended";
       events.add(e);
       time += e.duration;
     }
