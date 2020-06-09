@@ -192,11 +192,7 @@ class TrainingBuilder {
     // 3.2 - end-of-training
     {
       TrainingEvent e = new TrainingEvent(
-          training,
-          ETrainingEventType.TRAINING_END,
-          order++,
-          time,
-          0);
+          training, ETrainingEventType.TRAINING_END, order++, time, 0);
       events.add(e);
       time += e.duration;
     }

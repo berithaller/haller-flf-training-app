@@ -28,7 +28,7 @@ void main() {
           new Training(refProfile, refTrainingLevelDefinition);
 
       // 3 - then
-      expect(testTraining.events, null);
+      expect(testTraining.events, []);
       expect(testTraining.events.isEmpty, true);
       expect(testTraining.profile, refProfile);
       expect(testTraining.trainingLevelDefinition, refTrainingLevelDefinition);
@@ -107,14 +107,14 @@ void main() {
       final TrainingEvent refEvent1c = new TrainingEvent(
           refTraining,
           ETrainingEventType.EXECUTION_UPDATE,
-          10,
-          21,
+          11,
+          20,
           30,
-          "event 1b (same time, different order)");
+          "event 1c (same time, different order)");
       final TrainingEvent refEvent2 = new TrainingEvent(refTraining,
-          ETrainingEventType.EXECUTION_UPDATE, 11, 20, 30, "event 2 (later)");
+          ETrainingEventType.EXECUTION_UPDATE, 10, 21, 30, "event 2 (later)");
       final TrainingEvent refEvent3 = new TrainingEvent(refTraining,
-          ETrainingEventType.EXECUTION_UPDATE, 9, 20, 30, "event 3 (earlier)");
+          ETrainingEventType.EXECUTION_UPDATE, 10, 19, 30, "event 3 (earlier)");
 
       // ramdomized list of events and expected list of events after sorting
       final List<TrainingEvent> testEvents = <TrainingEvent>[
@@ -135,24 +135,28 @@ void main() {
       // 2 - when / then
       int rc;
 
-// events take place at the same time, and have the same order
+      // events take place at the same time, and have the same order
       rc = refEvent1a.compareTo(refEvent1b);
       expect(rc, 0);
 
-// events take place at the same time, and have the different order
+      // events take place at the same time, and have the different order
       rc = refEvent1a.compareTo(refEvent1c);
-      expect(rc, 1);
-
-// events take place at the different times
-      rc = refEvent1a.compareTo(refEvent2);
-      expect(rc, 1);
-
-// events take place at the different times
-      rc = refEvent1a.compareTo(refEvent3);
       expect(rc, -1);
 
-// sort the list
+      // events take place at the different times
+      rc = refEvent1a.compareTo(refEvent2);
+      expect(rc, -1);
+
+      // events take place at the different times
+      rc = refEvent1a.compareTo(refEvent3);
+      expect(rc, 1);
+
+      // sort the list
       testEvents.sort();
+
+// debug: print("refList:" + refEventsSorted.toString() );
+// debug: print("testList:" + testEvents.toString() );
+
       expect(deepOrderedEquals(refEventsSorted, testEvents), true);
     });
   });
