@@ -1,4 +1,5 @@
 import 'package:flftrainingapp/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/models.dart';
 
@@ -28,14 +29,24 @@ class _TrainingPageState extends State<TrainingPage> {
   Widget build(BuildContext context) {
     // TODO temporary: show state of currently executing training
     String trainingExecution;
-    if (_currentTrainingExecution != null)
+    double progress;
+    if (_currentTrainingExecution != null) {
       trainingExecution = "Training: " +
           _millisecondsToDuration(_currentTrainingExecution.timeIntoTraining);
-    else
+
+      // Overall progress: we divide the current time into the running training
+      // to the total duration as defined in the TrainingLevelDefinition.
+      progress = _currentTrainingExecution.timeIntoTraining /
+          _currentTrainingExecution
+              .training.trainingLevelDefinition.totalDuration;
+    } else {
       trainingExecution = "Nothing is executing";
+      progress = 0.0;
+    }
 
     return Column(
       children: <Widget>[
+        SizedBox(height: 30),
         Container(
           child: Text(
             "Training mit + Pferdename",
@@ -46,7 +57,7 @@ class _TrainingPageState extends State<TrainingPage> {
         selectionField(),
         SizedBox(height: 30),
         Container(
-          child: Text("Einheiten," " Arbeit," " Pause"),
+          child: Text("Beschreibung zum ausgewählten Level"),
         ),
         SizedBox(height: 30),
         Container(
@@ -54,6 +65,8 @@ class _TrainingPageState extends State<TrainingPage> {
         ),
         SizedBox(height: 30),
         stopPlayPause(),
+        SizedBox(height: 30),
+        createLinearProgressBar(progress)
       ],
     );
   }
@@ -137,24 +150,24 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createPlayButton() {
     return RaisedButton(
-      child: Icon(Icons.play_arrow, size: 40),
-      color: Colors.amberAccent,
+      child: Icon(Icons.play_arrow, size: 40, color: MyColors.darkcontrastcolor,),
+      color: MyColors.buttoncolor,
       onPressed: _onStart,
     );
   }
 
   RaisedButton _createPauseButton() {
     return RaisedButton(
-      child: Icon(Icons.pause, size: 40),
-      color: Colors.amberAccent,
+      child: Icon(Icons.pause, size: 40, color: MyColors.darkcontrastcolor,),
+      color: MyColors.buttoncolor,
       onPressed: _onPause,
     );
   }
 
   RaisedButton _createStopButton() {
     return RaisedButton(
-      child: Icon(Icons.stop, size: 40),
-      color: Colors.amberAccent,
+      child: Icon(Icons.stop, size: 40, color: MyColors.darkcontrastcolor,),
+      color: MyColors.buttoncolor,
       onPressed: _onStop,
     );
   }
@@ -202,7 +215,7 @@ class _TrainingPageState extends State<TrainingPage> {
     }
 
     return Container(
-      color: Colors.blue,
+      color: MyColors.lightcontrastcolor,
       padding: EdgeInsets.all(30.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -242,23 +255,21 @@ class _TrainingPageState extends State<TrainingPage> {
             .toList();
 
     return Container(
-      color: Colors.amberAccent,
+      color: MyColors.lightcontrastcolor,
       alignment: Alignment.center,
       padding: EdgeInsets.all(10),
-      //DropdownMenueButton has very strange behaviour, does not accept much Change in Words
-      //Alternative: PopupMenueButton
       child: DropdownButton<TrainingLevelDefinition>(
         value: _selectedTrainingLevelDefinition,
         icon: Icon(
           Icons.arrow_downward,
           size: 20,
-          color: Colors.blue,
+          color: MyColors.buttoncolor,
         ),
         elevation: 16,
-        style: TextStyle(color: Colors.blue, fontSize: 20),
+        style: TextStyle(color: MyColors.darkcontrastcolor, fontSize: 20),
         underline: Container(
           height: 2,
-          color: Colors.blue,
+          color: MyColors.buttoncolor,
         ),
         onChanged: (TrainingLevelDefinition newValue) {
           setState(() {
@@ -266,6 +277,17 @@ class _TrainingPageState extends State<TrainingPage> {
           });
         },
         items: ddmiLevels,
+      ),
+    );
+  }
+
+  Widget createLinearProgressBar(double progress) {
+    return Container(
+      color: MyColors.darkcontrastcolor,
+      padding: EdgeInsets.all(20),
+      child: LinearProgressIndicator(
+        value: progress,
+        backgroundColor: MyColors.lightcontrastcolor,
       ),
     );
   }
