@@ -20,6 +20,7 @@ class ApplicationContext implements IContext {
     register(ProfileService(), "profileService");
     register(LocationService(), "locationService");
     register(TrainingService(), "trainingService");
+    register(SettingsService(), "settingsService");
   }
 
   /// Singleton constructor
