@@ -4,8 +4,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="">
+    <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="Merge branch 'master' of se005:patrick/haller-flf-training-app&#10;                                             &#10;                                             # Conflicts:&#10;                                             #&#9;lib/src/screens/profiles_list_screen.dart">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/models/training_level_definition.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/training_level_definition.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +44,10 @@
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="project.structure.last.edited" value="SDK Location" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -112,8 +117,53 @@
       <option name="project" value="LOCAL" />
       <updated>1591447271578</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Manual merge / restore&#10;&#10;- lib/src/screens/profiles_list_screen.dart">
+      <created>1591453109560</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1591453109560</updated>
+    </task>
+    <task id="LOCAL-00007" summary="training: enabled TrainingService on UI&#10;&#10;The TrainingPage can now invoke&#10;- START&#10;- PAUSE/RESUME&#10;- STOP&#10;and reflects the state of the current training.">
+      <created>1591540359942</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1591540359942</updated>
+    </task>
+    <task id="LOCAL-00008" summary="training: hook training event stream to UI&#10;&#10;- added nice TrainingEvent.toString() for debugging and watching&#10;- debug print for sending TrainingEvents&#10;- hook TrainingPage to the running TrainingExecution,&#10;  e. g. for updating the screen and do some more elaborate event&#10;  processing&#10;- bugfixes">
+      <created>1591644548038</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1591644548038</updated>
+    </task>
+    <task id="LOCAL-00009" summary="ui: Colors, Design refresh">
+      <created>1591722522943</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1591722522943</updated>
+    </task>
+    <task id="LOCAL-00010" summary="ui: Progress Bar">
+      <created>1591722583187</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1591722583187</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -135,25 +185,20 @@
     <MESSAGE value="model: cleanup, added Settings screen" />
     <MESSAGE value="model: cleanup, added Settings screen&#10;&#10;- cleaned models.dart and screens.dart export interfaces&#10;- added SettingsScreen as 4th tab&#10;- added some temporary test data to the ProfileListScreen" />
     <MESSAGE value="profile-list-screen: rendering of profile cards added" />
-    <option name="LAST_COMMIT_MESSAGE" value="profile-list-screen: rendering of profile cards added" />
+    <MESSAGE value="Manual merge / restore&#10;&#10;- lib/src/screens/profiles_list_screen.dart" />
+    <MESSAGE value="training: enabled TrainingService on UI&#10;&#10;The TrainingPage can now invoke&#10;- START&#10;- PAUSE/RESUME&#10;- STOP&#10;and reflects the state of the current training." />
+    <MESSAGE value="training: hook training event stream to UI&#10;&#10;- added nice TrainingEvent.toString() for debugging and watching&#10;- debug print for sending TrainingEvents&#10;- hook TrainingPage to the running TrainingExecution,&#10;  e. g. for updating the screen and do some more elaborate event&#10;  processing&#10;- bugfixes" />
+    <MESSAGE value="ui: Colors, Design refresh" />
+    <MESSAGE value="ui: Progress Bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui: Progress Bar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/main.dart</url>
-          <line>53</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/main.dart</url>
-          <line>63</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/main.dart</url>
-          <line>103</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/lib/src/services/training_builder.dart</url>
+          <line>207</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
