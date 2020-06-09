@@ -1,4 +1,8 @@
-// This unit test suite tests the [Traning] model..
+///
+/// This unit test suite tests the [Traning] model..
+///
+/// See
+/// https://pub.dev/packages/test
 
 import 'package:test/test.dart';
 import 'package:flftrainingapp/models.dart';
