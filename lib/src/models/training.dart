@@ -85,6 +85,9 @@ class TrainingEvent implements Comparable<TrainingEvent> {
   /// (internal) description of the event
   final String description;
 
+  /// optional: payload for Text-to-Speech for announcements
+  String _ttsPayload;
+
   /// Initializing constructor
   TrainingEvent(
       this.training, this.eventType, this.order, this.timestamp, this.duration,
@@ -118,6 +121,16 @@ class TrainingEvent implements Comparable<TrainingEvent> {
     }
     return result;
   }
+
+  ///
+  /// return the Text-To-Speech payload
+  ///
+  String get textToSpeech => _ttsPayload;
+
+  ///
+  /// set the Text-To-Speech payload
+  ///
+  set textToSpeech(newTtsPayload) => this._ttsPayload = newTtsPayload;
 
   ///
   /// Return descriptive string for the current object
