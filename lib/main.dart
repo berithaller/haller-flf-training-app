@@ -1,3 +1,4 @@
+import 'package:flftrainingapp/services.dart';
 ///
 /// The foundation of any Flutter app, the main.dart file, should hold very little code and only serve as an overview to an app.
 ///
@@ -8,6 +9,7 @@
 ///
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/screens.dart';
+
 
 //import Url of training_page for routing
 //import 'package:haller-flf-training-app/training_page.dart';
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Equiapp',
-      theme: ThemeData(
+      theme: ThemeData.light(
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+
       ),
       home: MyHomePage(title: 'Equikinetic'),
       //initialisation of routs
@@ -90,9 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
       currentIndex: _selectedAppTab.index,
       onTap: _onAppTabSelected,
       // TODO need theme support, how?
-      backgroundColor: Colors.white,
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey,
+      backgroundColor: MyColors.darkcontrastcolor,
+      selectedItemColor: MyColors.buttoncolor,
+      unselectedItemColor: MyColors.darkcontrastcolor,
       showSelectedLabels: true,
       showUnselectedLabels: true,
     );
@@ -136,10 +138,12 @@ class _MyHomePageState extends State<MyHomePage> {
     var currentScreen = _createSelectedScreen(_selectedAppTab);
 
     return Scaffold(
+      backgroundColor: MyColors.backgroundcolor,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title, style: TextStyle(color: MyColors.lightcontrastcolor),),
+        backgroundColor: MyColors.darkcontrastcolor,
       ),
       //ListView Problem solved!!!
       body: ListView(

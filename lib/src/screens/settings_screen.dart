@@ -1,3 +1,4 @@
+import 'package:flftrainingapp/services.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -15,6 +16,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Checkbox(
+            checkColor: MyColors.darkcontrastcolor,
+            activeColor: MyColors.buttoncolor,
             value: darkVal,
             onChanged: (bool value) {
               setState(() {
@@ -29,6 +32,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Checkbox(
+            checkColor: MyColors.darkcontrastcolor,
+            activeColor: MyColors.buttoncolor,
             value: brightVal,
             onChanged: (bool value) {
               setState(() {
@@ -42,7 +47,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[cbDarkTheme, cbBrightTheme],
+      children: <Widget>[
+        SizedBox(
+          height: 80,
+        ),
+        cbDarkTheme,
+        cbBrightTheme
+      ],
     ));
   }
 }

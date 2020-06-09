@@ -54,7 +54,8 @@ class _ProfilesListState extends State<ProfilesListScreen> {
         : "";
 
     return Card(
-      color: Colors.blue,
+      color: MyColors.buttoncolor,
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
       child: ListTile(
         leading: Image(
           image: NetworkImage(
@@ -64,7 +65,7 @@ class _ProfilesListState extends State<ProfilesListScreen> {
         subtitle: Text(_breed + _birth),
         isThreeLine: true,
         dense: false,
-        trailing: Icon(Icons.more_vert),
+        trailing: Icon(Icons.more_vert, color: MyColors.darkcontrastcolor),
         onTap: () {},
       ),
     );
@@ -84,7 +85,8 @@ class _ProfilesListState extends State<ProfilesListScreen> {
     // add further controls
     _children.add(SizedBox(height: 20));
     _children.add(FloatingActionButton(
-      child: Icon(Icons.add),
+      backgroundColor: MyColors.buttoncolor,
+      child: Icon(Icons.add, color: MyColors.darkcontrastcolor,),
       onPressed: () {},
     ));
 
