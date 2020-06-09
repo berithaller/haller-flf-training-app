@@ -10,8 +10,6 @@ class TrainingPage extends StatefulWidget {
 }
 
 class _TrainingPageState extends State<TrainingPage> {
-  @override
-  String dropdownValue = 'One';
 
   /// Flutter Text-To-Speech engine
   /// https://flutter.de/artikel/text-to-speech.html
@@ -167,27 +165,17 @@ class _TrainingPageState extends State<TrainingPage> {
   ///
   void _onTrainingEvent(TrainingEvent event) async {
     ETrainingEventType eventType = event.eventType;
-    int timestamp = event.timestamp;
-    int order = event.order;
-    String description = event.description;
 
+    // debugging
     if (eventType != ETrainingEventType.EXECUTION_UPDATE) {
       print("Received event: " + event.toString());
     }
 
-    switch (event.eventType) {
-      case ETrainingEventType.ANNOUNCEMENT:
-        // if the event has a text to speak
-        if (event.textToSpeech != null && event.textToSpeech.isNotEmpty) {
-          // stop the engine if it is currently speaking
-          await _flutterTts.stop();
-          await _flutterTts.speak(event.textToSpeech.toLowerCase());
-        }
-        break;
-
-      default:
-        // ignore
-        break;
+    // check if the current event has something to say ...
+    if (event.textToSpeech != null && event.textToSpeech.isNotEmpty) {
+      // stop the engine if it is currently speaking
+      await _flutterTts.stop();
+      await _flutterTts.speak(event.textToSpeech.toLowerCase());
     }
 
     setState(() {
@@ -197,7 +185,11 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createPlayButton() {
     return RaisedButton(
-      child: Icon(Icons.play_arrow, size: 40, color: MyColors.darkcontrastcolor,),
+      child: Icon(
+        Icons.play_arrow,
+        size: 40,
+        color: MyColors.darkcontrastcolor,
+      ),
       color: MyColors.buttoncolor,
       onPressed: _onStart,
     );
@@ -205,7 +197,11 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createPauseButton() {
     return RaisedButton(
-      child: Icon(Icons.pause, size: 40, color: MyColors.darkcontrastcolor,),
+      child: Icon(
+        Icons.pause,
+        size: 40,
+        color: MyColors.darkcontrastcolor,
+      ),
       color: MyColors.buttoncolor,
       onPressed: _onPause,
     );
@@ -213,7 +209,11 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createStopButton() {
     return RaisedButton(
-      child: Icon(Icons.stop, size: 40, color: MyColors.darkcontrastcolor,),
+      child: Icon(
+        Icons.stop,
+        size: 40,
+        color: MyColors.darkcontrastcolor,
+      ),
       color: MyColors.buttoncolor,
       onPressed: _onStop,
     );
@@ -290,6 +290,7 @@ class _TrainingPageState extends State<TrainingPage> {
                   value: tld,
                   child: new Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+
                     children: <Widget>[
                       new Text(tld.name +
                           " (" +
