@@ -10,7 +10,6 @@ class TrainingPage extends StatefulWidget {
 }
 
 class _TrainingPageState extends State<TrainingPage> {
-
   /// Flutter Text-To-Speech engine
   /// https://flutter.de/artikel/text-to-speech.html
   FlutterTts _flutterTts;
@@ -76,7 +75,7 @@ class _TrainingPageState extends State<TrainingPage> {
 
     return Column(
       children: <Widget>[
-        SizedBox(height: 30),
+        SizedBox(height: 40),
         Container(
           child: Text(
             "Training mit + Pferdename",
@@ -87,15 +86,13 @@ class _TrainingPageState extends State<TrainingPage> {
         selectionField(),
         SizedBox(height: 30),
         Container(
-          child: Text("Beschreibung zum ausgewählten Level"),
-        ),
-        SizedBox(height: 30),
-        Container(
-          child: Text("Laufendes Training:" + trainingExecution),
+          child: Text(
+            "Laufendes Training: " + trainingExecution,
+            style: TextStyle(fontSize: 17),
+          ),
         ),
         SizedBox(height: 30),
         stopPlayPause(),
-        SizedBox(height: 30),
         createLinearProgressBar(progress)
       ],
     );
@@ -185,6 +182,9 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createPlayButton() {
     return RaisedButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
       child: Icon(
         Icons.play_arrow,
         size: 40,
@@ -197,6 +197,9 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createPauseButton() {
     return RaisedButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
       child: Icon(
         Icons.pause,
         size: 40,
@@ -209,6 +212,9 @@ class _TrainingPageState extends State<TrainingPage> {
 
   RaisedButton _createStopButton() {
     return RaisedButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
       child: Icon(
         Icons.stop,
         size: 40,
@@ -256,17 +262,12 @@ class _TrainingPageState extends State<TrainingPage> {
       }
     }
 
-    // 2 - insert some spacers between the buttons
-    for (int i = buttons.length - 1; i > 0; i--) {
-      buttons.add(new SizedBox(width: 20));
-    }
-
     return Container(
       color: MyColors.lightcontrastcolor,
+      margin: EdgeInsets.all(15),
       padding: EdgeInsets.all(30.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: buttons,
       ),
     );
@@ -277,26 +278,43 @@ class _TrainingPageState extends State<TrainingPage> {
   ///
   String _millisecondsToDuration(int milliseconds) {
     final String duration = (milliseconds / 60000).toStringAsFixed(0) +
-        "m " +
+        "min " +
         ((milliseconds / 1000) % 60).toStringAsFixed(0) +
         "s";
     return duration;
   }
 
   Widget selectionField() {
-    final List<DropdownMenuItem> ddmiLevels =
+    final Iterable<DropdownMenuItem<TrainingLevelDefinition>> ddmiLevels =
         _trainingService.trainingLevelDefinitions
             .map((tld) => new DropdownMenuItem(
                   value: tld,
                   child: new Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-
                     children: <Widget>[
-                      new Text(tld.name +
-                          " (" +
-                          _millisecondsToDuration(tld.totalDuration) +
-                          ")"),
-                      new Text(tld.description)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                              child: new Text(
+                            tld.name,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: MyColors.buttoncolor),
+                          )),
+                          Container(
+                              margin: EdgeInsets.all(5),
+                              child: new Text(
+                                _millisecondsToDuration(tld.totalDuration),
+                                style: TextStyle(fontSize: 20),
+                              )),
+                        ],
+                      ),
+                      new Text(
+                        tld.description,
+                        style: TextStyle(fontSize: 17),
+                      )
                     ],
                   ),
                 ))
@@ -306,11 +324,14 @@ class _TrainingPageState extends State<TrainingPage> {
       color: MyColors.lightcontrastcolor,
       alignment: Alignment.center,
       padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(15),
       child: DropdownButton<TrainingLevelDefinition>(
+        isExpanded: true,
+        itemHeight: 90,
         value: _selectedTrainingLevelDefinition,
         icon: Icon(
           Icons.arrow_downward,
-          size: 20,
+          size: 40,
           color: MyColors.buttoncolor,
         ),
         elevation: 16,
@@ -331,6 +352,7 @@ class _TrainingPageState extends State<TrainingPage> {
 
   Widget createLinearProgressBar(double progress) {
     return Container(
+      margin: EdgeInsets.all(15),
       color: MyColors.darkcontrastcolor,
       padding: EdgeInsets.all(20),
       child: LinearProgressIndicator(

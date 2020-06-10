@@ -46,7 +46,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Center(
         child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(
           height: 80,

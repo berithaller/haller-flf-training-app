@@ -113,7 +113,7 @@ class TrainingBuilder {
             time,
             _trainingLevelDefinition.durationOfWorkSet,
             "Start of Work-Set $iWorkSet");
-        e0.textToSpeech = "go go go";
+        e0.textToSpeech = "start";
         events.add(e0);
         time += e0.duration;
 

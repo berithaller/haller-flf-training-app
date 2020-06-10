@@ -55,7 +55,7 @@ class _ProfilesListState extends State<ProfilesListScreen> {
 
     return Card(
       color: MyColors.buttoncolor,
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
       child: ListTile(
         leading: Image(
           image: NetworkImage(
@@ -65,10 +65,19 @@ class _ProfilesListState extends State<ProfilesListScreen> {
         subtitle: Text(_breed + _birth),
         isThreeLine: true,
         dense: false,
-        trailing: Icon(Icons.more_vert, color: MyColors.darkcontrastcolor),
-        onTap: () {},
-      ),
-    );
+        //trailing: PopupMenuButton<Options>(
+         // onSelected: (Options result) {setState(() {
+         //   _selection = result;
+        //  });},
+         // itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
+           // const PopupMenuItem<Options>(value: Options.delete,child: Text("löschen")),
+            //const PopupMenuItem<Options>(value: Options.revise,child: Text("bearbeiten")),
+          //],
+
+        ),
+        //onTap: () {}, // when tapped shoe detailView
+      );
+
   }
 
   @override
@@ -87,7 +96,7 @@ class _ProfilesListState extends State<ProfilesListScreen> {
     _children.add(FloatingActionButton(
       backgroundColor: MyColors.buttoncolor,
       child: Icon(Icons.add, color: MyColors.darkcontrastcolor,),
-      onPressed: () {},
+      onPressed: () {}, //when tapped create new Profile
     ));
 
     //return ListView!!!

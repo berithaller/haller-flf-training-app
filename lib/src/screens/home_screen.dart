@@ -46,7 +46,11 @@ class _HomeState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
                       letterSpacing: 1.5)),
+              SizedBox(height: 15,),
               RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 padding: EdgeInsets.all(10),
                 color: MyColors.buttoncolor,
                 child: Text("Pferd1", style: TextStyle(fontSize: 20)),
