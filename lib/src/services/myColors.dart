@@ -49,7 +49,7 @@ class MyColors {
   static const lightcontrastcolor8 = const Color(0xFFD5D2C1);
   static const darkcontrastcolor8 = const Color(0xFF370D00);
 
-  ThemeData mybasicTheme() {
+  static ThemeData mybasicTheme() {
     final basicTheme = ThemeData.light();
     return basicTheme.copyWith(
       primaryColor: buttoncolor,
