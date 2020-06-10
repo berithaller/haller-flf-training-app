@@ -10,3 +10,4 @@ export 'src/models/location_list.dart';
 export 'src/models/training_level_definition.dart';
 export 'src/models/training.dart';
 export 'src/models/training_execution.dart';
+export 'src/models/settings.dart';

@@ -10,3 +10,4 @@ export 'src/services/location_service.dart';
 export 'src/services/training_builder.dart';
 export 'src/services/training_service.dart';
 export 'src/services/myColors.dart';
+export 'src/services/settings_service.dart';

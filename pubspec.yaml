@@ -25,20 +25,20 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: any
   datetime_picker_formfield: ^1.0.0
 
   # https://pub.dev/packages/uuid
-  uuid: ^2.0.4
+  uuid: any
 
   # https://pub.dev/packages/geolocator
   # https://medium.com/swlh/working-with-geolocation-and-geocoding-in-flutter-and-integration-with-maps-16fb0bc35ede
   # https://github.com/johnpryan/flutter_map
-  geolocator: ^5.3.2+2
+  geolocator: any
 
   # https://pub.dev/packages/contacts_service
   # https://github.com/lukasgit/flutter_contacts/blob/master/lib/contacts_service.dart
-  contacts_service: ^0.4.6
+  contacts_service: any
   
   # https://stackoverflow.com/questions/10404516/how-can-i-compare-lists-for-equality-in-dart
   collection: any
@@ -48,6 +48,9 @@ dependencies:
   # https://github.com/coodoo-io/fluttabc/blob/master/pubspec.yaml
   # https://pub.dev/packages/flutter_tts
   flutter_tts: any
+
+  # File I/O
+  path_provider: any
 
 dev_dependencies:
   # https://flutter.dev/docs/cookbook/testing/integration/introduction
@@ -59,7 +62,7 @@ dev_dependencies:
     sdk: flutter
 
   # For unit testing
-  test: ^1.0.0
+  test: any
 
 
 # For information on the generic Dart part of this file, see the
