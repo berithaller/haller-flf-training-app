@@ -1,4 +1,5 @@
 import 'package:flftrainingapp/services.dart';
+
 ///
 /// The foundation of any Flutter app, the main.dart file, should hold very little code and only serve as an overview to an app.
 ///
@@ -9,7 +10,6 @@ import 'package:flftrainingapp/services.dart';
 ///
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/screens.dart';
-
 
 //import Url of training_page for routing
 //import 'package:haller-flf-training-app/training_page.dart';
@@ -24,21 +24,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Equiapp',
-      theme:
-      MyColors.mybasicTheme(
+      theme: MyColors.mybasicTheme(
 
-      // ThemeData.light(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+          // ThemeData.light(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
 
-      ),
+          ),
       home: MyHomePage(title: 'Equikinetic'),
       //initialisation of routs
       //also see https://flutter.dev/docs/cookbook/navigation/named-routes
@@ -124,7 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
         return SettingsScreen();
 
       case _EBottomAppTab.DIARY:
-        return TrainingPage();
 
       default:
         return Text("Not yet implemented");
@@ -145,7 +143,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title, style: TextStyle(color: MyColors.lightcontrastcolor),),
+        title: Text(
+          widget.title,
+          style: TextStyle(color: MyColors.lightcontrastcolor),
+        ),
         backgroundColor: MyColors.darkcontrastcolor,
       ),
       //ListView Problem solved!!!

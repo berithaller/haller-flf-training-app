@@ -73,28 +73,24 @@ class _TrainingPageState extends State<TrainingPage> {
       progress = 0.0;
     }
 
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 40),
-        Container(
-          child: Text(
-            "Training mit + Pferdename",
-            style: TextStyle(fontSize: 20, letterSpacing: 1),
+    return Scaffold(
+      appBar: new AppBar(title: Text("Training mit " "+ Pferdename")),
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 60),
+          selectionField(),
+          SizedBox(height: 30),
+          Container(
+            child: Text(
+              "Laufendes Training: " + trainingExecution,
+              style: TextStyle(fontSize: 17),
+            ),
           ),
-        ),
-        SizedBox(height: 30),
-        selectionField(),
-        SizedBox(height: 30),
-        Container(
-          child: Text(
-            "Laufendes Training: " + trainingExecution,
-            style: TextStyle(fontSize: 17),
-          ),
-        ),
-        SizedBox(height: 30),
-        stopPlayPause(),
-        createLinearProgressBar(progress)
-      ],
+          SizedBox(height: 30),
+          stopPlayPause(),
+          createLinearProgressBar(progress)
+        ],
+      ),
     );
   }
 
@@ -327,6 +323,8 @@ class _TrainingPageState extends State<TrainingPage> {
       margin: EdgeInsets.all(15),
       child: DropdownButton<TrainingLevelDefinition>(
         isExpanded: true,
+        focusColor: MyColors.backgroundcolor,
+        autofocus: true,
         itemHeight: 90,
         value: _selectedTrainingLevelDefinition,
         icon: Icon(

@@ -1,10 +1,11 @@
+import 'package:flftrainingapp/screens.dart';
 import 'package:flftrainingapp/services.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:flutter/material.dart';
 ///
 /// Home Screen
 ///
-import 'package:flutter/material.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @protected
@@ -46,7 +47,9 @@ class _HomeState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
                       letterSpacing: 1.5)),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
@@ -55,8 +58,7 @@ class _HomeState extends State<HomeScreen> {
                 color: MyColors.buttoncolor,
                 child: Text("Pferd1", style: TextStyle(fontSize: 20)),
                 onPressed: () {
-                  //Route for the training page has to be here, it has to be initialised in the main file
-                  Navigator.pushNamed(context, '/training_page');
+                  _push(TrainingPage());
                 },
               ),
             ],
@@ -64,5 +66,13 @@ class _HomeState extends State<HomeScreen> {
         ),
       ],
     );
+  }
+
+  //MaterialPageRoute takes care of creating a new route to be pushed
+  //Navigator.of(context) finds a Navigator up in the widget tree and uses it to push the new route
+  void _push(var constructor) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => constructor,
+    ));
   }
 }
