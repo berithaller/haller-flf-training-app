@@ -21,8 +21,8 @@ class TrainingService {
   void _initializeTrainingLevelDefinitions() {
     _trainingLevelDefinitions.add(new TrainingLevelDefinition(
         name: "Beginner-1",
-        description: "Beginner''s Training: slow and easy",
-        nrOfWorkSets: 4,
+        description: "8 Einheiten, 60s Arbeit, 30s Pause",
+        nrOfWorkSets: 8,
         timeToRampUp: 5000,
         durationOfWorkSet: 60000,
         durationOfPause: 30000,
@@ -34,7 +34,7 @@ class TrainingService {
 
     _trainingLevelDefinitions.add(new TrainingLevelDefinition(
         name: "Beginner-2",
-        description: "Beginner''s Training: slow and easy, but more sets",
+        description: "10 Einheiten, 60s Arbeit, 30s Pause",
         nrOfWorkSets: 10,
         timeToRampUp: 5000,
         durationOfWorkSet: 60000,
@@ -46,12 +46,25 @@ class TrainingService {
         durationOfAnnouncement: 1000));
 
     _trainingLevelDefinitions.add(new TrainingLevelDefinition(
+        name: "Beginner-3",
+        description: "12 Einheiten, 60s Arbeit, 30s Pause",
+        nrOfWorkSets: 12,
+        timeToRampUp: 5000,
+        durationOfWorkSet: 60000,
+        durationOfPause: 30000,
+        announceWorkSet: 5000,
+        announcePause: 5000,
+        announceEndOfTraining: 5000,
+        nrOfAnnouncements: 5,
+        durationOfAnnouncement: 1000));
+
+    _trainingLevelDefinitions.add(new TrainingLevelDefinition(
         name: "Intermediate-1",
-        description: "Intermediate''s Training: moderate pace",
-        nrOfWorkSets: 10,
+        description: "12 Einheiten, 90s Arbeit, 30s Pause",
+        nrOfWorkSets: 12,
         timeToRampUp: 5000,
         durationOfWorkSet: 90000,
-        durationOfPause: 20000,
+        durationOfPause: 30000,
         announceWorkSet: 5000,
         announcePause: 5000,
         announceEndOfTraining: 5000,
@@ -60,16 +73,69 @@ class TrainingService {
 
     _trainingLevelDefinitions.add(new TrainingLevelDefinition(
         name: "Intermediate-2",
-        description: "Intermediate''s Training: moderate pace, but more sets",
-        nrOfWorkSets: 15,
+        description: "14 Einheiten, 60s Arbeit, 30s Pause",
+        nrOfWorkSets: 14,
         timeToRampUp: 5000,
-        durationOfWorkSet: 90000,
-        durationOfPause: 20000,
+        durationOfWorkSet: 60000,
+        durationOfPause: 30000,
         announceWorkSet: 5000,
         announcePause: 5000,
         announceEndOfTraining: 5000,
         nrOfAnnouncements: 5,
         durationOfAnnouncement: 1000));
+
+    _trainingLevelDefinitions.add(new TrainingLevelDefinition(
+        name: "Intermediate-3",
+        description: "14 Einheiten, 90s Arbeit, 30s Pause",
+        nrOfWorkSets: 14,
+        timeToRampUp: 5000,
+        durationOfWorkSet: 900000,
+        durationOfPause: 30000,
+        announceWorkSet: 5000,
+        announcePause: 5000,
+        announceEndOfTraining: 5000,
+        nrOfAnnouncements: 5,
+        durationOfAnnouncement: 1000));
+
+    _trainingLevelDefinitions.add(new TrainingLevelDefinition(
+        name: "Advanced-1",
+        description: "16 Einheiten, 60s Arbeit, 30s Pause",
+        nrOfWorkSets: 16,
+        timeToRampUp: 5000,
+        durationOfWorkSet: 600000,
+        durationOfPause: 30000,
+        announceWorkSet: 5000,
+        announcePause: 5000,
+        announceEndOfTraining: 5000,
+        nrOfAnnouncements: 5,
+        durationOfAnnouncement: 1000));
+
+    _trainingLevelDefinitions.add(new TrainingLevelDefinition(
+        name: "Advanced-2",
+        description: "16 Einheiten, 90s Arbeit, 30s Pause",
+        nrOfWorkSets: 16,
+        timeToRampUp: 5000,
+        durationOfWorkSet: 900000,
+        durationOfPause: 30000,
+        announceWorkSet: 5000,
+        announcePause: 5000,
+        announceEndOfTraining: 5000,
+        nrOfAnnouncements: 5,
+        durationOfAnnouncement: 1000));
+
+    _trainingLevelDefinitions.add(new TrainingLevelDefinition(
+        name: "Test",
+        description: "nicht ernst gemeint, Funktionstest",
+        nrOfWorkSets: 16,
+        timeToRampUp: 5000,
+        durationOfWorkSet: 400000,
+        durationOfPause: 30000,
+        announceWorkSet: 5000,
+        announcePause: 5000,
+        announceEndOfTraining: 5000,
+        nrOfAnnouncements: 5,
+        durationOfAnnouncement: 1000));
+
   }
 
   ///

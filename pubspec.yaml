@@ -17,7 +17,7 @@ description: Horse Training App
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,6 +27,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: any
   datetime_picker_formfield: ^1.0.0
+  image_picker: any
 
   # https://pub.dev/packages/uuid
   uuid: any

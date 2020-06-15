@@ -112,23 +112,26 @@ class _ProfilesListState extends State<ProfilesListScreen> {
         // Show a snackbar. This snackbar could also contain "Undo" actions.
         final String _name = profile.name;
         Scaffold.of(context).showSnackBar(new SnackBar(
-            content: new Row(children: <Widget>[
-          Text("$_name deleted"),
-          new RaisedButton(
-            child: Text("Undo"),
-            onPressed: () async {
-              final ProfileList _profileList =
-                  await _profileService.getProfileList();
+            content: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+              Text("$_name deleted"),
+              new RaisedButton(
+                color: MyColors.buttoncolor,
+                child: Text("Undo", style: TextStyle(color: MyColors.darkcontrastcolor),),
+                onPressed: () async {
+                  final ProfileList _profileList =
+                      await _profileService.getProfileList();
 
-              setState(() {
-                _profileList.add(profile);
-              });
+                  setState(() {
+                    _profileList.add(profile);
+                  });
 
-              // TODO how to remove the scaffold and prevent the user from pressing UNDO 10 times?
-              Scaffold.of(context).hideCurrentSnackBar();
-            },
-          )
-        ])));
+                  // TODO how to remove the scaffold and prevent the user from pressing UNDO 10 times?
+                  Scaffold.of(context).hideCurrentSnackBar();
+                },
+              )
+            ])));
       },
     );
   }
@@ -164,12 +167,10 @@ class _ProfilesListState extends State<ProfilesListScreen> {
   ///
   /// Create a new, empty profile and open the ProfileDetailsPage for it.
   ///
-  void _onPressedCreateNewProfile() async
-  {
+  void _onPressedCreateNewProfile() async {
     // 1 - create a new, unnamed profile and add it to the ProfileList
     final Profile newProfile = Profile.createNew("No Name");
-    final ProfileList profileList =
-        await _profileService.getProfileList();
+    final ProfileList profileList = await _profileService.getProfileList();
     profileList.add(newProfile);
 
     // 2 - open the details page for the new profile
