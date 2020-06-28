@@ -98,7 +98,6 @@ class TrainingExecution {
   void pause() {
     assert(_state == EState.RUNNING);
     _postIntermediateEvent(ETrainingEventType.EXECUTION_PAUSE);
-
     _state = EState.PAUSED;
     _stopWatch.stop();
   }
@@ -109,7 +108,6 @@ class TrainingExecution {
   void resume() {
     assert(_state == EState.PAUSED);
     _postIntermediateEvent(ETrainingEventType.EXECUTION_RESUME);
-
     _state = EState.RUNNING;
     _stopWatch.start();
   }
@@ -123,6 +121,7 @@ class TrainingExecution {
     _state = EState.ABORTED;
     _postIntermediateEvent(ETrainingEventType.EXECUTION_ABORT);
     _stopWatch.stop();
+    //Wie setzt man die Stopwatch auf null zurück bzw. schließt sie
 
     // stop the timer and close the event stream
     _timerDestroy();

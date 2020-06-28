@@ -3,6 +3,7 @@ import 'package:flftrainingapp/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/models.dart';
+import 'dart:math';
 
 class TrainingPage extends StatefulWidget {
   @override
@@ -35,12 +36,36 @@ class _TrainingPageState extends State<TrainingPage> {
   void initState() {
     super.initState();
 
+    // Fun factor - randomize the speech output a little bit (20%)
+    final Random rnd = new Random();
+    final double dblRandom1 = rnd.nextDouble() / 5.0;
+    final double dblRandom2 = rnd.nextDouble() * 1.5;
+    final int intRandom3 = rnd.nextInt(3);
+
     // initialize Text-To-Speech
     _flutterTts = new FlutterTts();
-    _flutterTts.setLanguage("de-DE");
-    _flutterTts.setSpeechRate(1.0);
+
+    String language;
+    switch (intRandom3) {
+      case 0:
+        language = "en-UK";
+        break;
+      case 1:
+        language = "fr-FR";
+        break;
+      case 2:
+        language = "it-IT";
+        break;
+      case 3:
+      default:
+        language = "de-DE";
+        break;
+    }
+    _flutterTts.setLanguage(language);
+
+    _flutterTts.setSpeechRate(0.8 + dblRandom1);
     _flutterTts.setVolume(1.0);
-    _flutterTts.setPitch(1.0);
+    _flutterTts.setPitch(0.5 + dblRandom2);
   }
 
   ///
@@ -116,6 +141,7 @@ class _TrainingPageState extends State<TrainingPage> {
   ///
   void _onStart() {
     assert(_selectedTrainingLevelDefinition != null);
+    assert(_currentTrainingExecution == null);
     // TODO assert(_currentTrainingExecution == null);
 
     setState(() {
@@ -191,13 +217,14 @@ class _TrainingPageState extends State<TrainingPage> {
     );
   }
 
-  RaisedButton _createPauseButton() {
+  RaisedButton _createPauseButton(final EState currentState) {
     return RaisedButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),
       child: Icon(
-        Icons.pause,
+        // switch icon between '>>' and '||' depending on the supplied state
+        currentState == EState.RUNNING ? Icons.pause : Icons.play_arrow,
         size: 40,
         color: MyColors.darkcontrastcolor,
       ),
@@ -234,13 +261,13 @@ class _TrainingPageState extends State<TrainingPage> {
           buttons.add(new Text("INITIAL: not started"));
           break;
         case EState.RUNNING:
-          buttons.add(_createPauseButton());
+          buttons.add(_createPauseButton(_currentTrainingExecution.state));
           buttons.add(_createStopButton());
           // TODO Berit
           break;
         case EState.PAUSED:
           // TODO Berit
-          buttons.add(_createPlayButton());
+          buttons.add(_createPauseButton(_currentTrainingExecution.state));
           buttons.add(_createStopButton());
           break;
         case EState.ABORTED:
@@ -273,10 +300,10 @@ class _TrainingPageState extends State<TrainingPage> {
   /// Convert a given amount of milliseconds to a String in the format of "???m ??s".
   ///
   String _millisecondsToDuration(int milliseconds) {
-    final String duration = (milliseconds / 60000).toStringAsFixed(0) +
-        "min " +
-        ((milliseconds / 1000) % 60).toStringAsFixed(0) +
-        "s";
+    final int _min = (milliseconds / 60000).truncate();
+    final int _sec = (milliseconds / 1000).truncate() % 60;
+    final String duration =
+        _min.toStringAsFixed(0) + "min " + _sec.toStringAsFixed(0) + "s";
     return duration;
   }
 
