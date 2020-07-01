@@ -4,10 +4,11 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="Merge branch 'master' of se005:patrick/haller-flf-training-app&#10;                                             &#10;                                             # Conflicts:&#10;                                             #&#9;lib/src/screens/profiles_list_screen.dart">
+    <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="ui: created camera option with button, which does not work yet&#10;=&gt; https://pub.dev/packages/image_picker&#10;&#10;corrected TrainingService Settings into the real values">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/training_level_definition.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/training_level_definition.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/training_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/training_page.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +153,56 @@
       <option name="project" value="LOCAL" />
       <updated>1591722583187</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="idea: workspace settings">
+      <created>1591722681720</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1591722681720</updated>
+    </task>
+    <task id="LOCAL-00012" summary="training: made Text-To-Speech work">
+      <created>1591724937120</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1591724937120</updated>
+    </task>
+    <task id="LOCAL-00013" summary="ui:improved Theme support">
+      <created>1591791733943</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1591791733943</updated>
+    </task>
+    <task id="LOCAL-00014" summary="ui: started details page, rounded Buttons, fixed Dropdownmenue">
+      <created>1591791867851</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1591791867851</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ui: details page working: new, edit, delete&#10;&#10;- improved navigation to TrainingPage&#10;- ProfileDetailsPage is now working: new profile, edit profile,&#10;  and delete profile (via gesture).">
+      <created>1591893680285</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1591893680286</updated>
+    </task>
+    <task id="LOCAL-00016" summary="ui: created camera option with button, which does not work yet&#10;=&gt; https://pub.dev/packages/image_picker&#10;&#10;corrected TrainingService Settings into the real values">
+      <created>1592200648086</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1592200648086</updated>
+    </task>
+    <task id="LOCAL-00017" summary="ui: bugfix in TrainingExecution, Funfactor with Flutter TtS">
+      <created>1593370185360</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1593370185360</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -190,17 +240,14 @@
     <MESSAGE value="training: hook training event stream to UI&#10;&#10;- added nice TrainingEvent.toString() for debugging and watching&#10;- debug print for sending TrainingEvents&#10;- hook TrainingPage to the running TrainingExecution,&#10;  e. g. for updating the screen and do some more elaborate event&#10;  processing&#10;- bugfixes" />
     <MESSAGE value="ui: Colors, Design refresh" />
     <MESSAGE value="ui: Progress Bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui: Progress Bar" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/src/services/training_builder.dart</url>
-          <line>207</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="idea: workspace settings" />
+    <MESSAGE value="training: made Text-To-Speech work" />
+    <MESSAGE value="Merge branch 'master' of se005:patrick/haller-flf-training-app&#10;                                             &#10;                                             # Conflicts:&#10;                                             #&#9;lib/src/screens/profiles_list_screen.dart" />
+    <MESSAGE value="ui:improved Theme support" />
+    <MESSAGE value="ui: started details page, rounded Buttons, fixed Dropdownmenue" />
+    <MESSAGE value="ui: details page working: new, edit, delete&#10;&#10;- improved navigation to TrainingPage&#10;- ProfileDetailsPage is now working: new profile, edit profile,&#10;  and delete profile (via gesture)." />
+    <MESSAGE value="ui: created camera option with button, which does not work yet&#10;=&gt; https://pub.dev/packages/image_picker&#10;&#10;corrected TrainingService Settings into the real values" />
+    <MESSAGE value="ui: bugfix in TrainingExecution, Funfactor with Flutter TtS" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui: bugfix in TrainingExecution, Funfactor with Flutter TtS" />
   </component>
 </project>

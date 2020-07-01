@@ -36,36 +36,16 @@ class _TrainingPageState extends State<TrainingPage> {
   void initState() {
     super.initState();
 
-    // Fun factor - randomize the speech output a little bit (20%)
-    final Random rnd = new Random();
-    final double dblRandom1 = rnd.nextDouble() / 5.0;
-    final double dblRandom2 = rnd.nextDouble() * 1.5;
-    final int intRandom3 = rnd.nextInt(3);
+
 
     // initialize Text-To-Speech
     _flutterTts = new FlutterTts();
 
-    String language;
-    switch (intRandom3) {
-      case 0:
-        language = "en-UK";
-        break;
-      case 1:
-        language = "fr-FR";
-        break;
-      case 2:
-        language = "it-IT";
-        break;
-      case 3:
-      default:
-        language = "de-DE";
-        break;
-    }
-    _flutterTts.setLanguage(language);
+    _flutterTts.setLanguage("de-DE");
 
-    _flutterTts.setSpeechRate(0.8 + dblRandom1);
+    _flutterTts.setSpeechRate(1.0);
     _flutterTts.setVolume(1.0);
-    _flutterTts.setPitch(0.5 + dblRandom2);
+    _flutterTts.setPitch(1.0);
   }
 
   ///
@@ -177,6 +157,7 @@ class _TrainingPageState extends State<TrainingPage> {
     setState(() {
       _currentTrainingExecution.abort();
     });
+    Navigator.pop(context);
   }
 
   ///
