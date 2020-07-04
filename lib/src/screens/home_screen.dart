@@ -1,11 +1,12 @@
+///
+/// Home Screen
+///
+import 'package:flftrainingapp/models.dart';
 import 'package:flftrainingapp/screens.dart';
 import 'package:flftrainingapp/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-///
-/// Home Screen
-///
-
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @protected
@@ -14,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeState extends State<HomeScreen> {
+  final ProfileService _profileService =
+      ApplicationContext().get(name: "profileService");
+
   @protected
   @override
   void initState() {
@@ -26,6 +30,10 @@ class _HomeState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Access to the "current state"
+    final CurrentState _currentState = Provider.of<CurrentState>(context);
+    assert(_currentState != null);
+
 //ListView does not work, in any way, at all
 // no plan what ListBody does, it is not scrollable either, but at least there is no exception
     return Column(
@@ -50,15 +58,20 @@ class _HomeState extends State<HomeScreen> {
               SizedBox(
                 height: 15,
               ),
+              getProfileSelector(context, _currentState),
+              SizedBox(
+                height: 20,
+              ),
               RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 padding: EdgeInsets.all(10),
                 color: MyColors.buttoncolor,
-                child: Text("Pferd1", style: TextStyle(fontSize: 20)),
+                child: getCurrentProfileButton(context, _currentState),
                 onPressed: () {
-                  _push(TrainingPage());
+                  // TODO only allow push if _currentState.currentProfile is not null
+                  _navigationPush(TrainingPage());
                 },
               ),
             ],
@@ -68,9 +81,67 @@ class _HomeState extends State<HomeScreen> {
     );
   }
 
+  ///
+  /// Return a widget representing the currently selected profile.
+  ///
+  Widget getCurrentProfileButton(
+      BuildContext context, CurrentState currentState) {
+    assert(currentState != null);
+
+    Widget result;
+    final Profile currentProfile = currentState.currentProfile;
+    if (currentProfile == null) {
+      result = new Text("Bitte Pferd auswählen",
+          style: TextStyle(color: Colors.red, fontSize: 20));
+    } else {
+      result = new Text(currentProfile.name + " jetzt trainieren",
+          style: TextStyle(fontSize: 20));
+    }
+    return result;
+  }
+
+  //
+  // Returns a complex widget tree with controls configured to
+  // select a single profile as the current one.
+  //
+  Widget getProfileSelector(BuildContext context, CurrentState currentState) {
+    // 1 - get the current profiles
+    final ProfileList _profileList = _profileService.getProfileList();
+
+    Widget result;
+    if (_profileList.isEmpty) {
+      // 1.1 - if there are no widgets, just return a static text telling the user what to do to get new profiles
+      result = new Text("Bitte zuerst ein Profil anlegen");
+    } else {
+      // 1.2 - Create a configured DropdownMenuItem for each profile
+      final List<DropdownMenuItem<Profile>> _items = _profileList.items
+          .map((e) =>
+              new DropdownMenuItem<Profile>(child: new Text(e.name), value: e))
+          .toList();
+
+      result = new DropdownButton<Profile>(
+        items: _items,
+        value: currentState.currentProfile,
+        style: TextStyle(color: MyColors.darkcontrastcolor, fontSize: 20),
+        underline: Container(
+          height: 2,
+          color: MyColors.buttoncolor,
+        ),
+        icon: Icon(Icons.arrow_downward, color: MyColors.buttoncolor,size: 20,),
+        onChanged: (final Profile selectedProfile) {
+          setState(() {
+            currentState.currentProfile = selectedProfile;
+          });
+        },
+      );
+    }
+
+    return result;
+  }
+
   //MaterialPageRoute takes care of creating a new route to be pushed
   //Navigator.of(context) finds a Navigator up in the widget tree and uses it to push the new route
-  void _push(var constructor) {
+  void _navigationPush(var constructor) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => constructor,
     ));

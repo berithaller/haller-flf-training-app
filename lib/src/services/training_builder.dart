@@ -60,8 +60,10 @@ class TrainingBuilder {
     // 1.1 - training initialization
     {
       TrainingEvent e = new TrainingEvent(
-          training, ETrainingEventType.TRAINING_INIT, order++, 0, 0);
+          training, ETrainingEventType.TRAINING_INIT, order++, time, 3000);
+      e.textToSpeech = "Training mit " + this._profile.name;
       events.add(e);
+      time += e.duration;
     }
 
     // 1.2 - training ramp-up
@@ -70,9 +72,9 @@ class TrainingBuilder {
           training,
           ETrainingEventType.TRAINING_RAMPUP,
           order++,
-          0,
+          time,
           _trainingLevelDefinition.timeToRampUp);
-      e.textToSpeech = "get ready";
+      e.textToSpeech = "Bereitmachen";
       events.add(e);
       time += e.duration;
     }

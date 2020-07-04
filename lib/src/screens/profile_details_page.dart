@@ -7,11 +7,9 @@ import 'package:flftrainingapp/models.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-
 class ProfileDetailsPage extends StatefulWidget {
   /// the profile that is currently displayed / edited
   final Profile _profile;
-
 
   ///
   /// Initializing constructor
@@ -47,7 +45,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
 
   Widget build(BuildContext context) {
     final String _profileName =
-    (_profile != null) ? _profile.name : "A horse with no name";
+        (_profile != null) ? _profile.name : "A horse with no name";
 
     return Scaffold(
         appBar: AppBar(title: Text(_profileName)),
@@ -66,7 +64,10 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 createDateField(keyBirthday, "Geburtsdatum", _profile.birthday,
                     _onChangeBirthday),
                 if (createAddPicture() != null) (createAddPicture()),
-                if (_image == null) Text('No image selected.') else Image.file(_image),
+                if (_image == null)
+                  Text('No image selected.')
+                else
+                  Image.file(_image),
               ]),
             ),
           ],
@@ -85,7 +86,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
   Widget createTextField(Key _key, String title, String _value,
       void callbackSetValue(Key k, String s)) {
     final TextEditingController _controller =
-    new TextEditingController(text: _value);
+        new TextEditingController(text: _value);
 
     _disposeList.add(_controller.dispose);
 
@@ -141,18 +142,23 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     });
   }
 
-
   //Problem: Daten bleiben nicht eingetragen, Formatierung, Uhrzeit sollte nicht angezeigt werden, Auswahl mühsam
   Widget createDateField(Key _key, String title, DateTime _value,
       void callbackSetValue(Key k, DateTime v)) {
+
+    var formatter = new DateFormat('d.M.y');
+    String formatted = formatter.format(_value);
+
     final TextEditingController _controller =
-    new TextEditingController(text: _value.toString());
+        new TextEditingController(text: formatted);
 
     _disposeList.add(_controller.dispose);
 
-    final format = DateFormat("yyyy-MM-dd");
+
+    final format = DateFormat('d.M.y');
     return DateTimeField(
       key: _key,
+      controller: _controller,
       format: format,
       onShowPicker: (context, currentValue) {
         return showDatePicker(
@@ -168,8 +174,8 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
       ),
       decoration: new InputDecoration(
         labelText: title,
-        labelStyle: new TextStyle(
-            color: MyColors.darkcontrastcolor, fontSize: 20),
+        labelStyle:
+            new TextStyle(color: MyColors.darkcontrastcolor, fontSize: 20),
       ),
       onChanged: (date) {
         callbackSetValue(_key, date);
@@ -177,18 +183,21 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     );
   }
 
-  Widget createAddPicture()  {
-    FloatingActionButton(
-        child: Icon(Icons.add_a_photo, color: MyColors.darkcontrastcolor,),
+  Widget createAddPicture() {
+    return new FloatingActionButton(
+        child: Icon(
+          Icons.add_a_photo,
+          color: MyColors.darkcontrastcolor,
+        ),
         backgroundColor: MyColors.buttoncolor,
         tooltip: 'Pick Image',
-        onPressed: ()  {
+        onPressed: () {
           getImage();
-        }
-    );
+        });
   }
+
   Future getImage() async {
-    final pickedFile = await _picker.getImage(source: ImageSource.camera);
+    final pickedFile = await _picker.getImage(source: ImageSource.gallery);
     setState(() {
       _image = File(pickedFile.path);
     });

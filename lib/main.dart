@@ -1,5 +1,3 @@
-import 'package:flftrainingapp/services.dart';
-
 ///
 /// The foundation of any Flutter app, the main.dart file, should hold very little code and only serve as an overview to an app.
 ///
@@ -9,7 +7,10 @@ import 'package:flftrainingapp/services.dart';
 /// @see https://medium.com/flutter-community/flutter-code-organization-de3a4c219149
 ///
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flftrainingapp/screens.dart';
+import 'package:flftrainingapp/models.dart';
+import 'package:flftrainingapp/services.dart';
 
 //import Url of training_page for routing
 //import 'package:haller-flf-training-app/training_page.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final MaterialApp _app = MaterialApp(
       title: 'Equiapp',
       theme: MyColors.mybasicTheme(
 
@@ -44,6 +45,15 @@ class MyApp extends StatelessWidget {
       // routes: {
       //   '/training_page': (context) => Training(),
     );
+
+    final MultiProvider _commonStateProvider = new MultiProvider(
+        // list of observable providers
+        providers: [
+          ChangeNotifierProvider<CurrentState>(
+              create: (_) => new CurrentState())
+        ], child: _app);
+
+    return _commonStateProvider;
   }
 }
 

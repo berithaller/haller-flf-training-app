@@ -10,15 +10,19 @@ class ProfileService {
   /// in-memory copy of all known profiles
   final ProfileList _profileList = new ProfileList();
 
-  ///
-  /// Get all stored profiles
-  ///
-  Future<ProfileList> getProfileList() async {
+  void loadExampleProfiles() async {
     if (_profileList.isEmpty) {
       _profileList.add(Profile.createNew("Hupfi 1"));
       _profileList.add(Profile.createNew("Hupfi 2"));
       _profileList.add(Profile.createNew("Hupfi 3"));
     }
+  }
+
+  ///
+  /// Get all stored profiles.
+  /// Never returns null, but an empty list.
+  ///
+  ProfileList getProfileList() {
     return _profileList;
   }
 }

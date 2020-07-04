@@ -3,7 +3,7 @@ import 'package:flftrainingapp/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/models.dart';
-import 'dart:math';
+import 'package:provider/provider.dart';
 
 class TrainingPage extends StatefulWidget {
   @override
@@ -29,14 +29,15 @@ class _TrainingPageState extends State<TrainingPage> {
   /// the currently active training execution (valid after START button has been pressed)
   TrainingExecution _currentTrainingExecution;
 
+  /// the currently selected profile
+  Profile _currentProfile;
+
   ///
   /// Initialize the state
   ///
   @override
   void initState() {
     super.initState();
-
-
 
     // initialize Text-To-Speech
     _flutterTts = new FlutterTts();
@@ -61,6 +62,13 @@ class _TrainingPageState extends State<TrainingPage> {
   /// Build the Widget State
   ///
   Widget build(BuildContext context) {
+    // Access to the "current state"
+    final CurrentState _currentState = Provider.of<CurrentState>(context);
+    assert(_currentState != null);
+
+    _currentProfile = _currentState.currentProfile;
+    final String _currentProfileName = _currentProfile?.name;
+
     // TODO temporary: show state of currently executing training
     String trainingExecution;
     double progress;
@@ -79,7 +87,7 @@ class _TrainingPageState extends State<TrainingPage> {
     }
 
     return Scaffold(
-      appBar: new AppBar(title: Text("Training mit " "+ Pferdename")),
+      appBar: new AppBar(title: Text("Training mit '$_currentProfileName'")),
       body: Column(
         children: <Widget>[
           SizedBox(height: 60),
@@ -107,10 +115,12 @@ class _TrainingPageState extends State<TrainingPage> {
 
     setState(() {
       // toggle between PAUSE and RESUME
-      if (_currentTrainingExecution.state == EState.PAUSED)
+      if (_currentTrainingExecution.state == EState.PAUSED) {
         _currentTrainingExecution.resume();
-      else if (_currentTrainingExecution.state == EState.RUNNING)
+      }
+      else if (_currentTrainingExecution.state == EState.RUNNING) {
         _currentTrainingExecution.pause();
+      }
       else
         print("Error: unknown training execution state");
     });
@@ -122,16 +132,14 @@ class _TrainingPageState extends State<TrainingPage> {
   void _onStart() {
     assert(_selectedTrainingLevelDefinition != null);
     assert(_currentTrainingExecution == null);
-    // TODO assert(_currentTrainingExecution == null);
+    assert(_currentProfile != null);
+    assert(_currentTrainingExecution == null);
 
     setState(() {
-      // TODO Berit: need to manage the current app state with all its currently selected "things"
-      final Profile _selectedProfile = Profile.createNew("TODO Test");
-
       // 1 - build the new training
       final TrainingBuilder builder = _trainingService.builder();
       final Training training = builder
-          .withProfile(_selectedProfile)
+          .withProfile(_currentProfile)
           .withTrainingLevelDefinition(_selectedTrainingLevelDefinition)
           .build();
 
@@ -174,13 +182,20 @@ class _TrainingPageState extends State<TrainingPage> {
     // check if the current event has something to say ...
     if (event.textToSpeech != null && event.textToSpeech.isNotEmpty) {
       // stop the engine if it is currently speaking
-      await _flutterTts.stop();
-      await _flutterTts.speak(event.textToSpeech.toLowerCase());
+      _say(event.textToSpeech);
     }
 
     setState(() {
       // TODO refresh the UI
     });
+  }
+
+  void _say( final String text ) async
+  {
+    await _flutterTts.stop();
+    if( text != null ) {
+      await _flutterTts.speak(text.toLowerCase());
+    }
   }
 
   RaisedButton _createPlayButton() {

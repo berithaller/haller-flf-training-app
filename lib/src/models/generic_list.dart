@@ -1,21 +1,24 @@
+import 'package:flutter/cupertino.dart';
+
 ///
 /// Data Model: a generic, observable list of items.
 ///
 
 import 'identifiable.dart';
 
-class GenericObservableList<IT extends IIdentifiable> {
+class GenericObservableList<IT extends IIdentifiable> extends ChangeNotifier {
   /// private: list of items
   List<IT> _items = [];
 
   /// @return list of managed items
-  List<IT> get items => _items.toList();
+  List<IT> get items => List.unmodifiable( _items.toList() );
 
   /// Count the number of items
   int get length => _items.length;
 
   /// Determine if list is empty
   bool get isEmpty => _items.isEmpty;
+
 
   /// @return some description for the current object
   @override
@@ -34,6 +37,7 @@ class GenericObservableList<IT extends IIdentifiable> {
     }
 
     _items.add(item);
+    notifyListeners();
     return true;
   }
 
@@ -49,8 +53,9 @@ class GenericObservableList<IT extends IIdentifiable> {
 
   // Remove a given item
   bool remove(IT item) {
-    final bool result = (item != null) ? _items.remove(item) : false;
-    return result;
+    final bool hasChanged = (item != null) ? _items.remove(item) : false;
+    if (hasChanged) notifyListeners();
+    return hasChanged;
   }
 
 // Remove an item by id

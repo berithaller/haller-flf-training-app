@@ -97,7 +97,7 @@ class TrainingExecution {
   ///
   void pause() {
     assert(_state == EState.RUNNING);
-    _postIntermediateEvent(ETrainingEventType.EXECUTION_PAUSE);
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_PAUSE, "Pause");
     _state = EState.PAUSED;
     _stopWatch.stop();
   }
@@ -107,7 +107,7 @@ class TrainingExecution {
   ///
   void resume() {
     assert(_state == EState.PAUSED);
-    _postIntermediateEvent(ETrainingEventType.EXECUTION_RESUME);
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_RESUME, "Es geht weiter");
     _state = EState.RUNNING;
     _stopWatch.start();
   }
@@ -119,7 +119,7 @@ class TrainingExecution {
     assert(_state == EState.RUNNING || _state == EState.PAUSED);
 
     _state = EState.ABORTED;
-    _postIntermediateEvent(ETrainingEventType.EXECUTION_ABORT);
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_ABORT, "Abbruch");
     _stopWatch.stop();
     //Wie setzt man die Stopwatch auf null zurück bzw. schließt sie
 
@@ -135,7 +135,7 @@ class TrainingExecution {
     assert(_state == EState.RUNNING);
 
     _state = EState.COMPLETED;
-    _postIntermediateEvent(ETrainingEventType.EXECUTION_COMPLETE);
+    _postIntermediateEvent(ETrainingEventType.EXECUTION_COMPLETE, "Ende");
     _stopWatch.stop();
 
     // stop the timer and close the event stream
@@ -192,9 +192,10 @@ class TrainingExecution {
   ///
   /// Create and post an intermediate event to the event stream.
   ///
-  void _postIntermediateEvent(ETrainingEventType eventType) {
+  void _postIntermediateEvent(ETrainingEventType eventType, [String textToSpeech]) {
     final TrainingEvent event =
         TrainingEvent.intermediate(_training, eventType);
+    event.textToSpeech = textToSpeech;
 
     if (ETrainingEventType.EXECUTION_UPDATE != eventType) {
       print("Sending event: " + event.toString());
