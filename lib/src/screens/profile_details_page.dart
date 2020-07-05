@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flftrainingapp/models.dart';
+import 'package:flftrainingapp/utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -63,7 +64,12 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                     _onChangeRemarks),
                 createDateField(keyBirthday, "Geburtsdatum", _profile.birthday,
                     _onChangeBirthday),
-                if (createAddPicture() != null) (createAddPicture()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    createAddPicture(),
+                  ],
+                ),
                 if (_image == null)
                   Text('No image selected.')
                 else
@@ -146,7 +152,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
   Widget createDateField(Key _key, String title, DateTime _value,
       void callbackSetValue(Key k, DateTime v)) {
 
-    var formatter = new DateFormat('d.M.y');
+    var formatter = new NullSafeDateFormat('d.M.y');
     String formatted = formatter.format(_value);
 
     final TextEditingController _controller =
@@ -155,7 +161,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     _disposeList.add(_controller.dispose);
 
 
-    final format = DateFormat('d.M.y');
+    final format = new NullSafeDateFormat('d.M.y');
     return DateTimeField(
       key: _key,
       controller: _controller,

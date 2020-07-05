@@ -58,6 +58,7 @@ class _HomeState extends State<HomeScreen> {
               SizedBox(
                 height: 15,
               ),
+              Text("Bitte ein Pferd auswählen:"),
               getProfileSelector(context, _currentState),
               SizedBox(
                 height: 20,

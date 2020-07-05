@@ -1,6 +1,10 @@
+import 'package:flftrainingapp/screens.dart';
 import 'package:flutter/material.dart';
 
 class MyColors {
+
+  //TODO Farben in zweidimensionales Array und dann mit SettingsScreen verbinden
+
   ///Default Theme / cold Bright Theme
   static const backgroundcolor = const Color(0xFFC2E3F4);
   static const buttoncolor = const Color(0xFFEFB730);

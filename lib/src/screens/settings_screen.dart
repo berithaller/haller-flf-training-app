@@ -1,5 +1,10 @@
 import 'package:flftrainingapp/services.dart';
+import 'package:flftrainingapp/models.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_input/flutter_input.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -7,40 +12,83 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool darkVal = false;
-  bool brightVal = false;
-
   @override
   Widget build(BuildContext context) {
-    var cbDarkTheme = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    // Access to the "current state"
+    final Settings _settings = Provider.of<Settings>(context);
+    assert(_settings != null);
+
+    var slVolume = Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Checkbox(
-            checkColor: MyColors.darkcontrastcolor,
-            activeColor: MyColors.buttoncolor,
-            value: darkVal,
-            onChanged: (bool value) {
-              setState(() {
-                darkVal = value;
-              });
-            }),
-        Text("dark Theme")
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.volume_up,
+              color: MyColors.darkcontrastcolor,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              "Lautstärke",
+              style: TextStyle(color: MyColors.darkcontrastcolor),
+            ),
+          ],
+        ),
+        InputSlider(
+          activeColor: MyColors.buttoncolor,
+          inactiveColor: MyColors.buttoncolor,
+          min: 0.0,
+          max: 1.0,
+          initialValue: _settings.audioVolume,
+          onChanged: (double value) {
+            setState(() {
+              _settings.audioVolume = value;
+            });
+          },
+        )
       ],
     );
 
-    var cbBrightTheme = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    var slPitch = Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Checkbox(
-            checkColor: MyColors.darkcontrastcolor,
-            activeColor: MyColors.buttoncolor,
-            value: brightVal,
-            onChanged: (bool value) {
-              setState(() {
-                brightVal = value;
-              });
-            }),
-        Text("bright Theme")
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.tag_faces,
+              color: MyColors.darkcontrastcolor,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              "Tonhöhe",
+              style: TextStyle(color: MyColors.darkcontrastcolor),
+            ),
+          ],
+        ),
+        InputSlider(
+          activeColor: MyColors.buttoncolor,
+          inactiveColor: MyColors.buttoncolor,
+          min: 0.0,
+          max: 1.0,
+          initialValue: _settings.audioPitch,
+          onChanged: (double value) {
+            setState(() {
+              _settings.audioPitch = value;
+            });
+          },
+        )
       ],
     );
 
@@ -48,10 +96,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
       children: <Widget>[
         SizedBox(
-          height: 80,
+          height: 50,
         ),
-        cbDarkTheme,
-        cbBrightTheme
+        slVolume,
+        SizedBox(
+          height: 30,
+        ),
+        slPitch
       ],
     ));
   }

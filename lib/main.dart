@@ -20,6 +20,9 @@ void main() => runApp(MyApp());
 
 // The application
 class MyApp extends StatelessWidget {
+  final SettingsService _settingsService =
+      ApplicationContext().get(name: "settingsService");
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,9 @@ class MyApp extends StatelessWidget {
         // list of observable providers
         providers: [
           ChangeNotifierProvider<CurrentState>(
-              create: (_) => new CurrentState())
+              create: (_) => new CurrentState()),
+          ChangeNotifierProvider<Settings>(
+              create: (_) => _settingsService.settings)
         ], child: _app);
 
     return _commonStateProvider;

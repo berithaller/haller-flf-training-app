@@ -3,6 +3,7 @@
 ///
 import 'package:flutter/material.dart';
 import 'package:flftrainingapp/models.dart';
+import 'package:flftrainingapp/utils.dart';
 import 'package:flftrainingapp/services.dart';
 import 'package:flftrainingapp/src/screens/profile_details_page.dart';
 import 'package:intl/intl.dart';
@@ -79,8 +80,10 @@ class _ProfilesListState extends State<ProfilesListScreen> {
 
   Widget _createProfileCard(Profile profile) {
 
-    var formatter = new DateFormat('d.M.y');
-    String formatted = formatter.format(profile.birthday);
+
+      var formatter = new NullSafeDateFormat('d.M.y');
+      String formatted = formatter.format(profile.birthday);
+
 
     String _breed = (profile.breed != null) ? profile.breed + " " : "";
     String _birth = (profile.birthday != null)
@@ -172,7 +175,7 @@ class _ProfilesListState extends State<ProfilesListScreen> {
   ///
   void _onPressedCreateNewProfile() {
     // 1 - create a new, unnamed profile and add it to the ProfileList
-    final Profile newProfile = Profile.createNew("No Name");
+    final Profile newProfile = Profile.createNew("Unbenannt");
     final ProfileList profileList = _profileService.getProfileList();
     profileList.add(newProfile);
 

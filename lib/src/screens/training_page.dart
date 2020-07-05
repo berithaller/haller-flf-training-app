@@ -41,9 +41,7 @@ class _TrainingPageState extends State<TrainingPage> {
 
     // initialize Text-To-Speech
     _flutterTts = new FlutterTts();
-
     _flutterTts.setLanguage("de-DE");
-
     _flutterTts.setSpeechRate(1.0);
     _flutterTts.setVolume(1.0);
     _flutterTts.setPitch(1.0);
@@ -59,12 +57,36 @@ class _TrainingPageState extends State<TrainingPage> {
   }
 
   ///
+  /// Configure the [FlutterTts] engine with values from the app's persistent settings
+  ///
+  void _configureTextToSpeech(final Settings settings) {
+    assert(_flutterTts != null);
+
+    if (settings.audioVoice != null) _flutterTts.setVoice(settings.audioVoice);
+
+    if (settings.audioLanguage != null)
+      _flutterTts.setLanguage(settings.audioLanguage);
+
+    _flutterTts.setPitch(settings.audioPitch);
+    _flutterTts.setSpeechRate(settings.audioSpeechRate);
+    _flutterTts.setVolume(settings.audioVolume);
+  }
+
+  ///
   /// Build the Widget State
   ///
   Widget build(BuildContext context) {
+
     // Access to the "current state"
     final CurrentState _currentState = Provider.of<CurrentState>(context);
     assert(_currentState != null);
+
+    // Access to the "settings"
+    final Settings _settings = Provider.of<Settings>(context);
+    assert(_settings != null);
+
+    // Configure the existing TTS engine
+    _configureTextToSpeech(_settings);
 
     _currentProfile = _currentState.currentProfile;
     final String _currentProfileName = _currentProfile?.name;
@@ -117,11 +139,9 @@ class _TrainingPageState extends State<TrainingPage> {
       // toggle between PAUSE and RESUME
       if (_currentTrainingExecution.state == EState.PAUSED) {
         _currentTrainingExecution.resume();
-      }
-      else if (_currentTrainingExecution.state == EState.RUNNING) {
+      } else if (_currentTrainingExecution.state == EState.RUNNING) {
         _currentTrainingExecution.pause();
-      }
-      else
+      } else
         print("Error: unknown training execution state");
     });
   }
@@ -190,10 +210,9 @@ class _TrainingPageState extends State<TrainingPage> {
     });
   }
 
-  void _say( final String text ) async
-  {
+  void _say(final String text) async {
     await _flutterTts.stop();
-    if( text != null ) {
+    if (text != null) {
       await _flutterTts.speak(text.toLowerCase());
     }
   }

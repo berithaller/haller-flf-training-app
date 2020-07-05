@@ -4,11 +4,21 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="ui: created camera option with button, which does not work yet&#10;=&gt; https://pub.dev/packages/image_picker&#10;&#10;corrected TrainingService Settings into the real values">
+    <list default="true" id="2b2c80b2-903a-43cc-b041-48d0d73f33a2" name="Default Changelist" comment="removed stupid disturbing 'funfactor', made the trainingpage dissappear when 'STOP' is clicked">
+      <change afterPath="$PROJECT_DIR$/lib/src/utils/date_utils.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/models/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/settings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/profile_details_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/profile_details_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/profiles_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/profiles_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/settings_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/settings_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/screens/training_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/training_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/services/myColors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/services/myColors.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,12 +62,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Berit\git\haller-flf-training-app" />
+      <recent name="C:\Users\Berit\git\haller-flf-training-app\assets" />
+      <recent name="C:\Users\Berit\git\haller-flf-training-app\android\assets" />
+      <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib\src" />
       <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib\src\screens" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Patrick\AndroidStudioProjects\flf_training_app\lib" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -202,7 +215,21 @@
       <option name="project" value="LOCAL" />
       <updated>1593370185360</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="removed stupid disturbing 'funfactor', made the trainingpage dissappear when 'STOP' is clicked">
+      <created>1593619063729</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1593619063729</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Verbindung von Profilen und Training, Reparieren von Datum,&#10;&#10;Photos von Gallery, erstellen Dropdown HomeScreen">
+      <created>1593894060911</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1593894060911</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -248,6 +275,8 @@
     <MESSAGE value="ui: details page working: new, edit, delete&#10;&#10;- improved navigation to TrainingPage&#10;- ProfileDetailsPage is now working: new profile, edit profile,&#10;  and delete profile (via gesture)." />
     <MESSAGE value="ui: created camera option with button, which does not work yet&#10;=&gt; https://pub.dev/packages/image_picker&#10;&#10;corrected TrainingService Settings into the real values" />
     <MESSAGE value="ui: bugfix in TrainingExecution, Funfactor with Flutter TtS" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui: bugfix in TrainingExecution, Funfactor with Flutter TtS" />
+    <MESSAGE value="removed stupid disturbing 'funfactor', made the trainingpage dissappear when 'STOP' is clicked" />
+    <MESSAGE value="Verbindung von Profilen und Training, Reparieren von Datum,&#10;&#10;Photos von Gallery, erstellen Dropdown HomeScreen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Verbindung von Profilen und Training, Reparieren von Datum,&#10;&#10;Photos von Gallery, erstellen Dropdown HomeScreen" />
   </component>
 </project>
