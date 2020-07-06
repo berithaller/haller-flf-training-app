@@ -92,10 +92,10 @@ class _HomeState extends State<HomeScreen> {
     Widget result;
     final Profile currentProfile = currentState.currentProfile;
     if (currentProfile == null) {
-      result = new Text("Bitte Pferd auswählen",
+      result = new Text("Bitte zuerst ein Profil anlegen",
           style: TextStyle(color: Colors.red, fontSize: 20));
     } else {
-      result = new Text(currentProfile.name + " jetzt trainieren",
+      result = new Text(currentProfile.name + " trainieren",
           style: TextStyle(fontSize: 20));
     }
     return result;

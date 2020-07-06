@@ -76,7 +76,6 @@ class _TrainingPageState extends State<TrainingPage> {
   /// Build the Widget State
   ///
   Widget build(BuildContext context) {
-
     // Access to the "current state"
     final CurrentState _currentState = Provider.of<CurrentState>(context);
     assert(_currentState != null);
@@ -95,7 +94,7 @@ class _TrainingPageState extends State<TrainingPage> {
     String trainingExecution;
     double progress;
     if (_currentTrainingExecution != null) {
-      trainingExecution = "Training: " +
+      trainingExecution = "Training läuft seit " +
           _millisecondsToDuration(_currentTrainingExecution.timeIntoTraining);
 
       // Overall progress: we divide the current time into the running training
@@ -104,12 +103,12 @@ class _TrainingPageState extends State<TrainingPage> {
           _currentTrainingExecution
               .training.trainingLevelDefinition.totalDuration;
     } else {
-      trainingExecution = "Nothing is executing";
+      trainingExecution = " - Läuft noch nicht - ";
       progress = 0.0;
     }
 
     return Scaffold(
-      appBar: new AppBar(title: Text("Training mit '$_currentProfileName'")),
+      appBar: new AppBar(title: Text("Training mit $_currentProfileName")),
       body: Column(
         children: <Widget>[
           SizedBox(height: 60),
@@ -117,7 +116,7 @@ class _TrainingPageState extends State<TrainingPage> {
           SizedBox(height: 30),
           Container(
             child: Text(
-              "Laufendes Training: " + trainingExecution,
+              trainingExecution,
               style: TextStyle(fontSize: 17),
             ),
           ),
@@ -330,25 +329,33 @@ class _TrainingPageState extends State<TrainingPage> {
                   child: new Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                              child: new Text(
-                            tld.name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: MyColors.buttoncolor),
-                          )),
-                          Container(
-                              margin: EdgeInsets.all(5),
-                              child: new Text(
-                                _millisecondsToDuration(tld.totalDuration),
-                                style: TextStyle(fontSize: 20),
-                              )),
-                        ],
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            top: BorderSide(width: 1.0, color: MyColors.darkcontrastcolor),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                                child: new Text(
+                              tld.name,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: MyColors.buttoncolor),
+                            )),
+                            Container(
+                                margin: EdgeInsets.all(5),
+                                child: new Text(
+                                  _millisecondsToDuration(tld.totalDuration),
+                                  style: TextStyle(fontSize: 20),
+                                )),
+                          ],
+                        ),
                       ),
+
                       new Text(
                         tld.description,
                         style: TextStyle(fontSize: 17),
@@ -368,6 +375,7 @@ class _TrainingPageState extends State<TrainingPage> {
         focusColor: MyColors.backgroundcolor,
         autofocus: true,
         itemHeight: 90,
+        disabledHint: Text("Level auswählen"),
         value: _selectedTrainingLevelDefinition,
         icon: Icon(
           Icons.arrow_downward,

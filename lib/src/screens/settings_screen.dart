@@ -92,6 +92,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ],
     );
 
+    var slSpeechRate = Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.shutter_speed,
+              color: MyColors.darkcontrastcolor,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              "Sprechgeschwindigkeit",
+              style: TextStyle(color: MyColors.darkcontrastcolor),
+            ),
+          ],
+        ),
+        InputSlider(
+          activeColor: MyColors.buttoncolor,
+          inactiveColor: MyColors.buttoncolor,
+          min: 0.0,
+          max: 1.0,
+          initialValue: _settings.audioSpeechRate,
+          onChanged: (double value) {
+            setState(() {
+              _settings.audioSpeechRate = value;
+            });
+          },
+        )
+      ],
+    );
+
     return Center(
         child: Column(
       children: <Widget>[
@@ -102,7 +139,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         SizedBox(
           height: 30,
         ),
-        slPitch
+        slPitch,
+        SizedBox(
+          height: 30,
+        ),
+        slSpeechRate
       ],
     ));
   }

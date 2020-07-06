@@ -122,20 +122,6 @@ class TrainingService {
         announceEndOfTraining: 5000,
         nrOfAnnouncements: 5,
         durationOfAnnouncement: 1000));
-
-    _trainingLevelDefinitions.add(new TrainingLevelDefinition(
-        name: "Test",
-        description: "nicht ernst gemeint, Funktionstest",
-        nrOfWorkSets: 3,
-        timeToRampUp: 5000,
-        durationOfWorkSet: 40000,
-        durationOfPause: 30000,
-        announceWorkSet: 5000,
-        announcePause: 5000,
-        announceEndOfTraining: 5000,
-        nrOfAnnouncements: 5,
-        durationOfAnnouncement: 1000));
-
   }
 
   ///

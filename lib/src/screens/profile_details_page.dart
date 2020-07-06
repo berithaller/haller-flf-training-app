@@ -64,6 +64,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                     _onChangeRemarks),
                 createDateField(keyBirthday, "Geburtsdatum", _profile.birthday,
                     _onChangeBirthday),
+                SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
